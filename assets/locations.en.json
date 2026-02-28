@@ -1,5 +1,16 @@
 [
   {
+    "name": "Test Mall",
+    "region": "Riyadh",
+    "address": "Al Ulia King Fahad St. First floor,Riyadh,SA ",
+    "lat": "24.633333",
+    "lng": "46.716667",
+    "phone": "112078555",
+    "email": "gallery-riyadh@fayendra.com",
+    "website": "https://fayendra.com",
+    "image": "https://cdn.shopify.com/s/files/1/0720/0371/5297/files/gallery.jpg?v=1747134682"
+  },
+  {
     "name": "Riyadh Gallery Mall",
     "region": "Riyadh",
     "address": "Al Ulia King Fahad St. First floor,Riyadh,SA ",
