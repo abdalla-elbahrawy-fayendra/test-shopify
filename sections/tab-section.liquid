@@ -1,0 +1,239 @@
+{%- style -%}
+  {% if section.settings.custom_width == true %}
+  .section-{{ section.id }}-padding .page-width{
+    max-width: {{ section.settings.page_width_narrow }}px;
+  }
+    {% endif %}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div
+  id="page-content"
+  class="color-{{ section.settings.color_scheme }} {{ section.settings.className }} gradient section-{{ section.id }}-padding"
+>
+  <div class="page-width">
+    <div class="tabs">
+      {%- for block in section.blocks -%}
+        <button
+          class="tab-button"
+          onclick="openTab('{{ block.settings.heading | downcase | replace: ' ', '' | replace: '-', '' | replace: '_', '' | replace: ',', '' | replace: '.', '' | replace: '&', '' }}')"
+        >
+          <img src="{{ block.settings.tab_icon | image_url }}" alt="icon">
+          <span>{{ block.settings.heading | escape }}</span>
+        </button>
+      {%- endfor -%}
+    </div>
+    {%- for block in section.blocks -%}
+      <div
+        id="{{ block.settings.heading | downcase | replace: ' ', '' | replace: '-', '' | replace: '_', '' | replace: ',', '' | replace: '.', '' | replace: '&', '' }}"
+        class="tab-content {% if section.settings.text_center == true %}text-center{% endif %}"
+      >
+        {% if section.settings.heading_hide == false %}
+          <h2>{{ block.settings.heading | escape }}</h2>
+        {% endif %}
+        {{ block.settings.row_content }}
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+<script>
+    function openTab(tabId) {
+  // Remove 'active' class from all tab contents
+  const contents = document.querySelectorAll('.tab-content');
+  contents.forEach(content => content.classList.remove('active'));
+
+  // Add 'active' class to the selected tab content
+  document.getElementById(tabId).classList.add('active');
+
+  // Remove 'active' class from all tab buttons
+  const buttons = document.querySelectorAll('.tab-button');
+  buttons.forEach(button => button.classList.remove('active'));
+
+  // Add 'active' class to the clicked button
+  const currentButton = document.querySelector(`[onclick="openTab('${tabId}')"]`);
+  currentButton.classList.add('active');
+}
+</script>
+<script>
+  // Store the original content of the paragraphs
+const contentDiv = document.getElementById('page-content');
+const paragraphs = contentDiv.querySelectorAll('p, h2, h3'); // Select all paragraphs and headers
+
+// Save the original content as a data attribute
+paragraphs.forEach(paragraph => {
+    if (!paragraph.dataset.originalContent) {
+        paragraph.dataset.originalContent = paragraph.innerHTML;
+    }
+});
+
+document.getElementById('search-button').addEventListener('click', function () {
+    const searchTerm = document.getElementById('content-search').value.toLowerCase().trim();
+    const resultsDiv = document.getElementById('search-results');
+
+    // Clear previous results
+    resultsDiv.innerHTML = "";
+
+    // Handle empty search term
+    if (searchTerm === "") {
+        resultsDiv.innerHTML = "Please enter a search term.";
+        return;
+    }
+
+    // Track if any results were found
+    let found = false;
+
+    // Loop through each paragraph
+    paragraphs.forEach(paragraph => {
+        // Restore original content
+        paragraph.innerHTML = paragraph.dataset.originalContent;
+
+        // Use a regex to find and wrap matches in <span>
+        const regex = new RegExp(`(${searchTerm})`, "gi");
+        if (regex.test(paragraph.innerHTML)) {
+            found = true;
+
+            // Highlight matches
+            const modifiedHTML = paragraph.innerHTML.replace(regex, '<span style="background-color: yellow;">$1</span>');
+            paragraph.innerHTML = modifiedHTML;
+
+            // Add the matching paragraph to the results
+            const resultHTML = `<p>${modifiedHTML}</p>`;
+            resultsDiv.innerHTML += resultHTML;
+        }
+    });
+
+    if (!found) {
+        resultsDiv.innerHTML = `<p>No results found for "<strong>${searchTerm}</strong>".</p>`;
+    }
+});
+</script>
+
+{% schema %}
+{
+  "name": "Tab Section",
+  "tag": "section",
+  "class": "section tabing-section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "className",
+      "label": "Custom Class"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "text_center",
+      "label": "Text Center",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "heading_hide",
+      "label": "Heading Hide",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "custom_width",
+      "label": "Custom Width",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "page_width_narrow",
+      "min": 600,
+      "max": 1600,
+      "step": 50,
+      "unit": "px",
+      "label": "Section Width",
+      "default": 600
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab_block",
+      "name": "Tab Block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "tab_icon",
+          "label": "Tab Icon"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Tab",
+          "label": "Tab",
+        },
+        {
+          "type": "richtext",
+          "id": "row_content",
+          "label": "t:sections.collapsible_content.blocks.collapsible_row.settings.row_content.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tab Section",
+      "blocks": [
+        {
+          "type": "tab_block"
+        },
+        {
+          "type": "tab_block"
+        },
+        {
+          "type": "tab_block"
+        },
+        {
+          "type": "tab_block"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

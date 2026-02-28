@@ -1,0 +1,176 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "custom_css": [
+        ".rte {border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.33); padding-bottom: 3rem;}"
+      ],
+      "settings": {
+        "padding_top": 64,
+        "padding_bottom": 0
+      }
+    },
+    "collapsible_content_aRQ6Cd": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_maCgFL": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "1. Information We Collect",
+            "icon": "none",
+            "row_content": "<p>We may gather personal information you submit when creating an account, making a purchase, or interacting with our website. This includes your name, email address, phone number, billing and shipping addresses, payment information, and any additional information you choose to give. We may collect non-personal information about your visit to our website, including your IP address, browser type, device information, and browsing history. This information allows us to improve our website and personalize your purchasing experience.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_AwPDK8": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "2. How We Use Your Information",
+            "icon": "none",
+            "row_content": "<p>Order Processing We use your personal information to provide order confirmations, shipment notifications, and handle returns/exchanges.  Customer Support We use your information to reply to requests, provide support, and address issues.  Marketing and Communications With your permission, we may send you promotional offers, emails, and updates on our products and services. You may opt out of these notifications at any time.  Website Improvement Using non-personal information allows us to study visitor behavior, improve functionality, and develop new features.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_YnEFKL": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "3. Sharing Your Information",
+            "icon": "none",
+            "row_content": "<p>We may share your information with trusted third-party service providers for website operations, payment processing, shipping, and marketing. These providers have a contractual obligation to secure your information and use it only for the purposes mentioned by Fayendra.  We may release your personal information if needed by law, legal process, or government request, or to defend our rights, property, or safety, as well as those of our customers or others.  Personal information may be transmitted to the acquiring organization during a business transaction, such as a merger, acquisition, or sale.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_YiJVji": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "4. Security of Your Information",
+            "icon": "none",
+            "row_content": "<p>We use strong security measures to keep your personal information safe from unauthorized access, change, disclosure, or destruction. These safeguards include encryption, secure payment gateways, and frequent security evaluations. However, please keep in mind that no mode of internet communication or computer storage is 100% safe.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_jxLNTw": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "5. Your Rights and Choices",
+            "icon": "none",
+            "row_content": "<p>You can access and change your personal information by login into your account or contacting our customer support team.  To opt out of getting marketing messages from us, follow the unsubscribe instructions in the emails or contact us directly.  To request erasure of your personal information, please contact us. However, we may need to keep some information due to legal duties.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_9a8ne7": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "6. Cookies and Tracking Technologies",
+            "icon": "none",
+            "row_content": "<p>We use cookies and other tracking technologies to improve your online experience, evaluate usage patterns, and provide personalized content. Your browser's settings allow you to manage your cookie options.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_Lk3894": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "7. Children's Privacy",
+            "icon": "none",
+            "row_content": "<p>Fayendra does not intentionally collect or solicit personal information from minors under the age of thirteen. If we discover that we have gathered personal information from a child under 13, we will instantly erase it.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_gaz4Md": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "8. Changes to This Privacy Policy",
+            "icon": "none",
+            "row_content": "<p>We may update this Privacy Policy from time to time to reflect changes in our practices or legal requirements. Any updates will be posted on this page, and the revised policy will indicate the effective date.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_maCgFL",
+        "collapsible_row_AwPDK8",
+        "collapsible_row_YnEFKL",
+        "collapsible_row_YiJVji",
+        "collapsible_row_jxLNTw",
+        "collapsible_row_9a8ne7",
+        "collapsible_row_Lk3894",
+        "collapsible_row_gaz4Md"
+      ],
+      "settings": {
+        "caption": "",
+        "heading": "",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "color_scheme": "",
+        "container_color_scheme": "",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 80
+      }
+    },
+    "quick_link_zQ9FMx": {
+      "type": "quick-link",
+      "blocks": {
+        "link_4ffDwf": {
+          "type": "link",
+          "settings": {
+            "link_label": "Term Of Use",
+            "link": "shopify://pages/terms-of-use"
+          }
+        },
+        "link_DUegra": {
+          "type": "link",
+          "settings": {
+            "link_label": "Cookis Policy",
+            "link": "shopify://pages/cookies-policy"
+          }
+        },
+        "link_aN8xzt": {
+          "type": "link",
+          "settings": {
+            "link_label": "Cookies Settings",
+            "link": "shopify://pages/cookies-policy"
+          }
+        },
+        "link_NQ939m": {
+          "type": "link",
+          "settings": {
+            "link_label": "Payment Option",
+            "link": "shopify://pages/payment-options"
+          }
+        }
+      },
+      "block_order": [
+        "link_4ffDwf",
+        "link_DUegra",
+        "link_aN8xzt",
+        "link_NQ939m"
+      ],
+      "settings": {
+        "title": "Quick Links",
+        "heading_size": "h1",
+        "columns_desktop": 2,
+        "column_alignment": "left",
+        "padding_top": 16,
+        "padding_bottom": 80
+      }
+    }
+  },
+  "order": [
+    "main",
+    "collapsible_content_aRQ6Cd",
+    "quick_link_zQ9FMx"
+  ]
+}

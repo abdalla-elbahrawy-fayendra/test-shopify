@@ -1,0 +1,157 @@
+{% assign locale = request.locale.iso_code | downcase %}
+
+{{ 'return-form.css' | asset_url | stylesheet_tag }}
+
+<div class="return-form-wrapper page-width section-padding" dir="{% if request.locale.iso_code == 'ar' %}rtl{% else %}ltr{% endif %}">
+  <div class="return-form-card" style="max-width: 720px; margin: auto; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); padding: 2rem;">
+    <h2 class="h2" style="margin-bottom: 1.5rem; text-align: center;">{{ 'return_form.title' | t }}</h2>
+
+    <div id="return-form-success" style="display:none; text-align:center; background:#e7f7ec; color:#20744a; padding:1rem; border-radius:8px; margin-bottom:1.5rem; font-weight:600;">
+      {{ 'return_form.success' | t }}
+    </div>
+
+    <form id="return-request-form" class="form needs-validation" novalidate style="display: flex; flex-direction: column; gap: 1rem;">
+      <div class="form-row" style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 200px;">
+          <input type="text" name="order_number" placeholder="{{ 'return_form.order_number' | t }}" required>
+          <div class="invalid-feedback" style="color: #c00; font-size: 0.85rem; margin-top: 4px; display: none;">{{ 'return_form.required_message' | t }}</div>
+        </div>
+        <div style="flex: 1; min-width: 200px;">
+          <input type="email" name="email" placeholder="{{ 'return_form.email' | t }}" required>
+          <div class="invalid-feedback" style="color: #c00; font-size: 0.85rem; margin-top: 4px; display: none;">{{ 'return_form.required_message' | t }}</div>
+        </div>
+      </div>
+
+      <div id="line-items-section" class="return-items-wrapper" style="margin-top: 1rem;"></div>
+
+      <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.95rem;">
+        <input type="checkbox" name="shipping_agreement" required>
+        {{ 'return_form.shipping_agreement' | t }}
+      </label>
+      <div class="invalid-feedback" style="color: #c00; font-size: 0.85rem; margin-top: -0.75rem; margin-bottom: 0.5rem; display: none;">{{ 'return_form.required_message' | t }}</div>
+
+      <div>
+        <textarea name="reason" placeholder="{{ 'return_form.reason' | t }}" required style="min-height: 100px; border-radius: 8px; border: 1px solid #ddd; padding: 0.75rem;"></textarea>
+        <div class="invalid-feedback" style="color: #c00; font-size: 0.85rem; margin-top: 4px; display: none;">{{ 'return_form.required_message' | t }}</div>
+      </div>
+
+      <button type="submit" class="button" style="align-self: center; padding: 0.75rem 2rem; font-weight: 600;">{{ 'return_form.submit' | t }}</button>
+    </form>
+
+    <!-- Hidden translation spans used by return-form.js -->
+    <span data-translate-select-all>{{ 'return_form.select_all' | t }}</span>
+    <span data-translate-select-items>{{ 'return_form.select_items' | t }}</span>
+    <span data-translate-returned>{{ 'return_form.returned' | t }}</span>
+    <span data-translate-success>{{ 'return_form.success' | t }}</span>
+    <span data-translate-error>{{ 'return_form.error' | t }}</span>
+    <span data-translate-required>{{ 'return_form.required_message' | t }}</span>
+
+    <style>
+      [data-translate-select-all],
+      [data-translate-select-items],
+      [data-translate-returned],
+      [data-translate-success],
+      [data-translate-error],
+      [data-translate-required] {
+        display: none;
+      }
+
+      .return-item-card {
+        display: flex;
+        gap: 1rem;
+        padding: 1rem;
+        border-radius: 10px;
+        border: 1px solid #e0e0e0;
+        background: #fafafa;
+        align-items: center;
+        margin-bottom: 0.75rem;
+      }
+
+      .return-item-card.returned {
+        opacity: 0.6;
+        pointer-events: none;
+        background: #f3f3f3;
+      }
+
+      .item-thumbnail img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+      }
+
+      .item-details {
+        flex-grow: 1;
+      }
+
+      .item-details .title-ar {
+        font-weight: 600;
+        font-size: 1rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .item-details .title-en {
+        font-size: 0.85rem;
+        color: #666;
+      }
+
+      .item-details .price, .item-details .quantity {
+        font-size: 0.8rem;
+        color: #999;
+        margin-top: 0.25rem;
+      }
+
+      .item-action {
+        flex-shrink: 0;
+      }
+
+      .returned-label {
+        font-size: 0.8rem;
+        color: #a00;
+        font-weight: bold;
+      }
+    </style>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("return-request-form");
+
+  form.addEventListener("submit", function (e) {
+    const inputs = form.querySelectorAll("input[required], textarea[required], input[type='checkbox'][required]");
+    let formValid = true;
+
+    inputs.forEach(input => {
+      const feedback = input.parentElement.querySelector(".invalid-feedback") || input.closest("label")?.nextElementSibling;
+      if (!input.checkValidity()) {
+        if (feedback) feedback.style.display = "block";
+        formValid = false;
+      } else {
+        if (feedback) feedback.style.display = "none";
+      }
+    });
+
+    if (!formValid) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  });
+});
+</script>
+
+{{ 'return-form.js' | asset_url | script_tag }}
+
+{% schema %}
+{
+  "name": "Return Request Form",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Return Request Form",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

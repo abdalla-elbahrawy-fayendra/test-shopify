@@ -1,0 +1,68 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 64,
+        "padding_bottom": 72
+      }
+    },
+    "rich_text_xAWWAL": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_NcXjqd": {
+          "type": "heading",
+          "settings": {
+            "heading": "Fayendra Brochure Collection 2025",
+            "heading_size": "h2"
+          }
+        }
+      },
+      "block_order": [
+        "heading_NcXjqd"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "custom_liquid_aP8ahY": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<iframe allowfullscreen=\"allowfullscreen\" scrolling=\"no\" class=\"fp-iframe\" src=\"https://heyzine.com/flip-book/abb393219a.html\" style=\"border: 1px solid lightgray; width: 100%; height: 600px;\"></iframe>",
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "devider_q7PkUh": {
+      "type": "devider",
+      "name": "Devider",
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main",
+    "rich_text_xAWWAL",
+    "custom_liquid_aP8ahY",
+    "devider_q7PkUh"
+  ]
+}

@@ -1,0 +1,111 @@
+<modal-opener
+  class="custom-popup-modal__opener"
+  data-modal="#PopupModal-mail"
+>
+  <button
+    id="customPopup-mail"
+    class="icon-button custom-popup-modal__button"
+    type="button"
+    aria-haspopup="dialog"
+  >
+    <span class="svg-wrapper">
+      {{- 'drop-mail.svg' | inline_asset_content -}}
+      <img class="animated-icon" src="{{ 'drop-hint.gif' | asset_url }}" alt="close">
+    </span>
+    <!--
+      <img src="https://cdn.shopify.com/s/files/1/0720/0371/5297/files/ca8c02900bdb5512c25c986d3f4f82fe.gif?v=1727700568">
+    -->
+  </button>
+</modal-opener>
+<!-- Show Wishlist Button Only for Real Products -->
+<button
+  class="wishlist-button"
+  data-product-id="{{ product.id }}"
+  data-product-handle="{{ product.handle }}"
+  data-product-title="{{ product.title | escape }}"
+  data-product-image="{{ product.featured_image | img_url: '360x' }}"
+  aria-label="Add to Wishlist"
+>
+  {{- 'wishlist.svg' | inline_asset_content -}}
+  {%- comment -%}❤️{%- endcomment -%}
+</button>
+
+<!-- The Modal -->
+<modal-dialog id="PopupModal-mail" class="custom-popup-modal large-modal">
+  <div
+    role="dialog"
+    aria-label="Drop a hint"
+    aria-modal="true"
+    class="custom-popup-modal__content"
+    tabindex="-1"
+  >
+    <button
+      id="ModalClose-mail"
+      type="button"
+      class="custom-popup-modal__toggle"
+      aria-label="{{ 'accessibility.close' | t }}"
+    >
+      <span class="animated-close-icon">
+        {{- 'icon-close.svg' | inline_asset_content -}}
+        <img class="animated-icon" src="{{ 'close.gif' | asset_url }}" alt="close">
+      </span>
+    </button>
+    <div class="custom-popup-modal__content-info">
+      <h2 class="h2">{{ 'templates.contact.form.formheading' | t }}</h2>
+      <form id="form" class="drop-hint">
+        <div class="field">
+          <input type="text" name="friendName" id="friendName" placeholder="{{ 'templates.contact.form.friendName' | t }}" required>
+        </div>
+        <div class="field">
+          <input type="text" name="friendEmail" id="friendEmail" placeholder="{{ 'templates.contact.form.friendemail' | t }}" required>
+        </div>
+        <div class="field">
+          <input type="text" name="yourName" id="yourName" placeholder="{{ 'recipient.form.name' | t }}" required>
+        </div>
+        <div class="field">
+          <input type="email" name="yourEmail" id="yourEmail" placeholder="{{ 'recipient.form.email' | t }}" required>
+        </div>
+        <p>
+          {{ 'templates.contact.form.This' | t }}<input class="other-text" type="text" name="text" id="textContent"> {{ 'templates.contact.form.sharemessage' | t }}
+        </p>
+        <br>
+        <input type="submit" id="button" class="button button--primary" value="{{ 'templates.contact.form.send' | t }}">
+      </form>
+      <div id="status"></div>
+    </div>
+  </div>
+</modal-dialog>
+<script
+  type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+></script>
+
+<script type="text/javascript">
+  emailjs.init('r5y29oym8Pq6r0hf4')
+</script>
+
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+<script>
+  const btn = document.getElementById("button");
+  document.getElementById("form").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    btn.value = "Sending...";
+
+    const serviceID = "default_service";
+    const templateID = "template_fsf0wjs";
+
+    emailjs.sendForm(serviceID, templateID, this).then(
+      () => {
+        btn.value = "Send Email";
+        alert("Sent!");
+        document.getElementById("form").reset(); // Reset the form
+      },
+      (err) => {
+        btn.value = "Send Email";
+        console.error("Email send failed:", err); // Log error details
+        alert(JSON.stringify(err));
+      }
+    );
+  });
+</script>

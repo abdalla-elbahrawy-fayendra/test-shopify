@@ -1,0 +1,401 @@
+
+/* =========================================
+   Riyadh Local Delivery - Premium Style
+   ========================================= */
+
+/* Shimmer Gradient Ribbon */
+.local-delivery-ribbon {
+  margin-top: 24px;
+  border-radius: 18px; /* was 16px */
+  padding: 2px;
+  background: linear-gradient(135deg, #e4cf87, #c9a24f 40%, #f5e6b8);
+  position: relative;
+  overflow: hidden;
+  max-width: 400px;
+  margin-inline: auto;
+  padding-inline: 6px;
+
+  /* fade + slight slide up */
+  opacity: 0;
+  transform: translateY(12px);
+  animation: ld-box-in 0.45s ease-out forwards;
+}
+
+@keyframes ld-box-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animated shimmer overlay */
+.local-delivery-ribbon::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(255,255,255,0.5), transparent 60%),
+    radial-gradient(circle at 80% 0%, rgba(255,255,255,0.25), transparent 60%);
+  animation: shimmerMove 6s infinite alternate ease-in-out;
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+@keyframes shimmerMove {
+  0%   { transform: translateX(-8%) translateY(-6%) scale(1); }
+  50%  { transform: translateX(6%) translateY(4%) scale(1.15); }
+  100% { transform: translateX(-4%) translateY(2%) scale(1); }
+}
+
+/* Sparkle animation */
+.local-delivery-ribbon::after {
+  content: "✦";
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  font-size: 10px;
+  color: #fff6d6;
+  animation: sparkleBlink 2.6s infinite ease-in-out;
+  opacity: 0.7;
+}
+
+@keyframes sparkleBlink {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50%      { transform: scale(1.4); opacity: 1; }
+}
+
+/* Inner content card */
+.local-delivery-main {
+  position: relative;
+  z-index: 1;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 12px 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.06);
+  align-items: flex-start;
+}
+
+/* RTL alignment */
+[dir="rtl"] .local-delivery-main {
+  text-align: center;
+  width: 100%;
+}
+
+/* Delivery Status Row */
+.local-delivery-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* RTL flip */
+[dir="rtl"] .local-delivery-status {
+  flex-direction: row-reverse;
+}
+
+/* Icon container */
+.local-delivery-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: radial-gradient(circle, #ffffff 30%, #f6f1df 90%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 0 0 1px rgba(201, 162, 79, 0.45),
+    0 2px 5px rgba(0, 0, 0, 0.09);
+}
+
+/* SVG icon */
+.ld-icon-svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* Text block */
+.local-delivery-text .ld-en,
+.local-delivery-text .ld-ar {
+  font-weight: 600;
+  text-align: center;
+  width: 100%;
+  font-size: 15px;
+  color: #222222;
+}
+
+/* Meta description */
+.local-delivery-meta {
+  margin-top: 2px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.local-delivery-meta span {
+  font-size: 13px;
+  color: #5c5c5c;
+}
+
+/* Learn More Button */
+.ld-learn-more {
+  margin-top: 10px;
+  background: transparent;
+  padding: 6px 0;
+  border: none;
+  color: #c9a24f;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  border-bottom: 1px solid transparent;
+  transition: all 0.25s ease;
+  opacity: 0.8;
+  position: relative;   /* for sparkle */
+}
+
+/* Default (English) – slight left padding if ever used */
+html:not([dir="rtl"]) .ld-learn-more {
+  margin-inline-start: 4px;
+}
+
+/* Arabic – indent inward from the right edge */
+[dir="rtl"] .ld-learn-more {
+  margin-inline-end: 24px; /* increase to 22–24 if you want more indent */
+}
+
+
+.ld-learn-more:hover {
+  opacity: 1;
+  text-shadow: 0 0 4px rgba(201,162,79,0.35);
+  border-bottom: 1px solid #c9a24f;
+}
+
+/* sparkle on hover */
+.ld-learn-more::after {
+  content: "✦";
+  position: absolute;
+  top: 50%;
+  right: -12px;
+  transform: translateY(-50%) scale(0.6);
+  opacity: 0;
+  font-size: 11px;
+  color: #c9a24f;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+[dir="rtl"] .ld-learn-more::after {
+  right: auto;
+  left: -12px;
+}
+
+.ld-learn-more:hover::after {
+  opacity: 1;
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Modal Styles */
+.ld-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.ld-modal-overlay.active {
+  display: flex;
+}
+
+.ld-no-scroll {
+  overflow: hidden !important;
+}
+
+/* Modal Box */
+.ld-modal-window {
+  width: 92%;
+  max-width: 520px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: 0 18px 60px rgba(0,0,0,0.18);
+  position: relative;
+  animation: modalPop 0.35s ease;
+}
+
+@keyframes modalPop {
+  0%   { transform: scale(0.85); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Close Button */
+.ld-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 18px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* Modal Header */
+.ld-modal-header {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 18px;
+  color: #222;
+}
+
+.ld-modal-header span {
+  display: block;
+}
+
+/* Modal Content Sections */
+.ld-modal-section {
+  margin-bottom: 18px;
+}
+
+.ld-modal-section h4 {
+  margin-bottom: 4px;
+  font-weight: 600;
+  font-size: 15px;
+  color: #222;
+}
+
+.ld-modal-section p {
+  margin: 0 0 10px;
+  color: #5a5a5a;
+  font-size: 14px;
+}
+
+.ar-title {
+  margin-top: 8px;
+}
+
+/* Allow hover/pointer events on badges so tooltip can work */
+.card__badge {
+  pointer-events: auto;
+}
+
+/* Our local-delivery badge */
+.badge--local-delivery {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--local-badge-bg);
+  border: 1px solid var(--local-badge-border);
+  border-radius: 12px;
+  padding: 3px 7px 3px 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #8a6c1f;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  animation: fadeSlideIn 0.35s ease-out;
+  position: relative;
+  cursor: help;
+}
+
+
+/* Icon inside the badge */
+.ld-badge-icon {
+  width: 14px;
+  height: 14px;
+  display: block;
+}
+
+/* Text */
+.ld-badge-text {
+  white-space: nowrap;
+  line-height: 1;
+}
+
+/* RTL support */
+[dir="rtl"] .badge--local-delivery {
+  direction: rtl;
+}
+
+/* Entry animation */
+@keyframes fadeSlideIn {
+  0% { opacity: 0; transform: translateY(6px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.badge--local-delivery {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--local-badge-bg);
+  border: 1px solid var(--local-badge-border);
+  border-radius: 12px;
+  padding: 3px 7px 3px 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #8a6c1f;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  animation: fadeSlideIn 0.35s ease-out;
+  position: relative;
+  cursor: help; /* indicates tooltip */
+}
+
+/* Tooltip bubble */
+.badge--local-delivery::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+  background: #111;
+  color: #fff;
+  font-size: 11px;
+  line-height: 1.4;
+  padding: 6px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 5;
+}
+
+/* Tooltip arrow */
+.badge--local-delivery::before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #111 transparent;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 4;
+}
+
+/* Show on hover */
+.badge--local-delivery:hover::after,
+.badge--local-delivery:hover::before {
+  opacity: 1;
+}
+
+.badge--local-delivery:hover::after {
+  transform: translateX(-50%) translateY(-8px);
+}
+
+/* RTL tooltip alignment */
+[dir="rtl"] .badge--local-delivery::after {
+  direction: rtl;
+  text-align: right;
+}

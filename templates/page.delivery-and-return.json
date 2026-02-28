@@ -1,0 +1,65 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 64,
+        "padding_bottom": 36
+      }
+    },
+    "collapsible_content_YMK6Cw": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_QNrt6A": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Return and exchange policy - Online",
+            "icon": "none",
+            "row_content": "<ul><li>Returns for products purchased through the online store must be requested within a maximum of 7 days from the date you receive the product.</li><li>Purchases to be retrieved are required to be in good condition and not used or barcode removed and in the same original condition upon receipt and no returns will be accepted if the product has been used or the barcode has been removed.</li><li>The attachments obtained with the product upon purchase are required to be returned in their original packaging and in their original condition when desiring to be returned.</li><li>It is necessary to attach the original invoice or proof of valid purchase.For health reasons, we cannot accept returns or exchanges of earrings, watches, event and evening sets.</li><li>Specially manufactured products cannot be exchanged or returned to the customer.</li><li>Returns of defective products are limited to defects that do not result from accidents, misuse, alteration, attempt to repair or neglect after purchase, normal wear and tear, and / or failure to follow product care advice.</li><li>If we receive defective products out of our return policy, we will return the product to you.</li><li>Please send all products you wish to return from order in the same shipment for fast processing of the return process.</li><li>The customer will bear all shipping costs incurred for replacement and return of 50 S.R, but in case of recovery through the showroom, 25 S.R are charged for shipping charges, and in case of replacement through the showroom no fees are deducted.</li><li>In case of a return and after receiving and verifying the recovered product, if the payment process is via a mada card or credit card, the amount will be refunded after deducting the shipping fee if it is found on the same account that did the purchase and the time of recovery will be according to the bank to which the account is affiliated.</li><li>Delivery fees are not refundable.</li><li>If you receive the product (s) as a gift, the amount paid will be returned to the customer who made the purchase.</li><li>International requests sent outside the Kingdom of Saudi Arabia are not exchangeable or refundable unless they are defective.</li><li>Gift coupons are not exchangeable or refundable.</li><li>A request for a replacement or return is submitted via email to onlinesales@fayendra.com stating the order number or invoice with the description of the product or products desired to be returned and we will contact you within 48 hours of receiving the email to arrange the replacement or return process.</li><li>Our team is available to serve you from Saturday to Thursday from 9 am to 6 pm, except for official holidays in the Kingdom.</li></ul>",
+            "page": ""
+          }
+        },
+        "collapsible_row_tapHC6": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "2. Customs Duties and Import Taxes",
+            "icon": "none",
+            "row_content": "<p>Fayendra is not responsible for any customs duties, import taxes, or customs clearance fees imposed by the recipient country's regulations.<br/><br/>International orders are non-refundable non-exchangeable. </p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_QNrt6A",
+        "collapsible_row_tapHC6"
+      ],
+      "settings": {
+        "caption": "",
+        "heading": "",
+        "heading_size": "h2",
+        "heading_alignment": "center",
+        "layout": "none",
+        "color_scheme": "",
+        "container_color_scheme": "",
+        "open_first_collapsible_row": true,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 80
+      }
+    }
+  },
+  "order": [
+    "main",
+    "collapsible_content_YMK6Cw"
+  ]
+}

@@ -1,0 +1,317 @@
+{%- comment -%} Constrain to theme width {%- endcomment -%}
+<div class="page-width page-content">
+  {{ 'storelocator.css' | asset_url | stylesheet_tag }}
+  <style>
+    /* Component styles */
+    #store-locator { position: relative; z-index: 0; margin: 0 auto 4rem; padding: 2rem 0; }
+    .locator-header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+    .locator-header h1 { margin: 0; flex: 1 1 auto; }
+    .locator-controls { display: flex; flex: 1 1 auto; align-items: center; gap: .5rem; }
+    #region-filter, #locator-search, #locate-btn { font: inherit; }
+    #region-filter, #locator-search { padding: .6rem; border: 1px solid #ddd; border-radius: 4px; }
+    #region-filter {
+      min-width: 150px;  /* keeps it at least that wide */
+      width: auto;       /* otherwise grow to fit the text */
+      white-space: nowrap; /* prevent internal wrapping */
+    }
+    #locator-search { flex: 1; }
+    #locate-btn { background: #fff; border: 1px solid #ccc; padding: .6rem 1rem; border-radius: 4px; cursor: pointer; transition: background .2s; }
+    #locate-btn:hover { background: #f5f5f5; }
+
+    /* Map styling and stacking context */
+    #locator-map { width: 100%; height: 500px; position: relative; z-index: 0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 1rem; overflow: hidden; }
+    /* Allow popups without clipping */
+    #locator-map .leaflet-popup-pane { overflow: visible !important; }
+    /* Ensure all leaflet panes sit at z-index 0 */
+    #locator-map .leaflet-pane { position: relative; z-index: 0 !important; }
+
+    /* List items */
+    #locator-results { list-style: none; margin: 0; padding: 0; }
+    .locator-item { display: flex; align-items: flex-start; gap: 1rem; background: #fff; border: 1px solid #eee; border-radius: 6px; padding: .8rem; margin-bottom: 1rem; cursor: pointer; transition: transform .1s, box-shadow .1s; }
+    .locator-item:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+    /*.locator-item img { width: 80px; height: 80px; object-fit: cover; border-radius: 4px; flex-shrink: 0; margin-right: 1rem; }*/
+    [dir="rtl"] .locator-item img { margin-right: 0; margin-left: 1rem; }
+    .locator-item h4 { margin: 0 0 .25rem; }
+    .locator-item p { margin: 0 0 .5rem; color: #555; }
+    .store-distance { font-size: 1rem; color: #555; font-weight: 500; display: block; margin-top: .5rem; }
+    .store-contact a { color: inherit; text-decoration: underline; }
+    .directions-btn { display: inline-block; margin-top: .5rem; padding: .4rem .8rem; background: #28a745; color: #fff; border-radius: 3px; text-decoration: none; font-size: .9rem; transition: background .2s; }
+    .directions-btn:hover { background: #218838; }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .locator-header { flex-direction: column; align-items: stretch; gap: .5rem; }
+      #locator-map { height: 300px; }
+      .locator-controls { flex-direction: column; }
+    }
+  </style>
+
+  {%- comment -%} Leaflet & MarkerCluster CSS/JS {%- endcomment -%}
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+
+  {%- comment -%} HTML STRUCTURE {%- endcomment -%}
+  <div id="store-locator" dir="{{ request.locale.text_direction }}">
+    <div class="locator-header">
+      <h1>{{ 'store-locator.title' | t }}</h1>
+      <br>
+      <br>
+      <div class="locator-controls">
+        <select id="region-filter">
+          <option value="">{{ 'store-locator.filter_region' | t }}</option>
+          <option value="all">{{ 'store-locator.all_regions' | t }}</option>
+        </select>
+        <input id="locator-search" type="text" placeholder="{{ 'store-locator.search_placeholder' | t }}">
+        <button id="locate-btn">{{ 'store-locator.locate_me' | t }}</button>
+      </div>
+    </div>
+    <div id="locator-map"></div>
+    <ul id="locator-results"></ul>
+  </div>
+
+  {%- comment -%} SCRIPT {%- endcomment -%}
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      {% if request.locale.iso_code == 'ar' %}
+        var dataUrl = {{ 'locations.ar.json' | asset_url | json }};
+      {% else %}
+        var dataUrl = {{ 'locations.en.json' | asset_url | json }};
+      {% endif %}
+      var distSuffix     = {{ 'store-locator.distance_suffix' | t | json }};
+      var geoError       = {{ 'store-locator.error_geolocation' | t | json }};
+      var mapError       = {{ 'store-locator.map_error' | t | json }};
+      var directionsLabel= {{ 'store-locator.directions' | t | json }};
+
+      /* === Inline translations (EN/AR) for the new features === */
+      var isArabic = {% if request.locale.iso_code == 'ar' %}true{% else %}false{% endif %};
+      var shareLabel  = isArabic ? "مشاركة" : "Share";
+      var linkCopied  = isArabic ? "تم نسخ الرابط!" : "Link copied!";
+      var copyPrompt  = isArabic ? "انسخ هذا الرابط" : "Copy this link";
+
+      /* === Helpers for slug + share + distance === */
+      function slugify(s){
+        return String(s)
+          .toLowerCase()
+          .replace(/[^a-z0-9\u0600-\u06FF]+/g, '-')
+          .replace(/^-+|-+$/g, '');
+      }
+      function buildShareUrl(slug){
+        const base = window.location.origin + window.location.pathname;
+        return `${base}?store=${encodeURIComponent(slug)}`;
+      }
+      function shareLink(url, title){
+        if (navigator.share) {
+          navigator.share({ title, url }).catch(function(){ /* ignore user cancel */ });
+        } else if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(url).then(function(){ alert(linkCopied); });
+        } else {
+          prompt(copyPrompt, url);
+        }
+      }
+      function haversineDistance(lat1,lon1,lat2,lon2){
+        function toRad(x){return x*Math.PI/180;}
+        var R=6371,dLat=toRad(lat2-lat1),dLon=toRad(lon2-lon1),
+            a=Math.sin(dLat/2)**2+Math.cos(toRad(lat1))*Math.cos(toRad(lat2))*Math.sin(dLon/2)**2,
+            c=2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a)); return R*c;
+      }
+
+      fetch(dataUrl)
+        .then(function(r){ if(!r.ok) throw new Error(); return r.json(); })
+        .then(function(locations){
+          var map = L.map('locator-map').setView([locations[0].lat, locations[0].lng], 5);
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{ attribution: '&copy; OpenStreetMap contributors' }).addTo(map);
+
+          var clusterGroup = L.markerClusterGroup({ maxClusterRadius:50 });
+          var listEl = document.getElementById('locator-results');
+          var listItems = [];
+          var regions = {};
+
+          locations.forEach(function(loc){
+            if(loc.region) regions[loc.region] = true;
+
+            // ensure a stable slug
+            loc.slug = loc.slug || slugify(loc.name);
+
+            var popupHtml =
+              '<div style="max-width:200px;">'+
+                '<h4 style="margin:0 0 .5em;">'+loc.name+'</h4>'+
+                '<p style="margin:0 0 .5em;">'+loc.address+'</p>'+
+                '<p class="store-distance"></p>'+
+                '<div class="store-contact">'+
+                  '<a href="tel:'+loc.phone+'">'+loc.phone+'</a><br>'+
+                  '<a href="mailto:'+loc.email+'">'+loc.email+'</a><br>'+
+                  '<a href="'+loc.website+'" target="_blank">'+loc.website+'</a>'+
+                '</div>'+
+                '<a class="directions-btn" href="https://www.google.com/maps/dir/?api=1&destination='+loc.lat+','+loc.lng+'" target="_blank">'+directionsLabel+'</a>'+
+                '<br>'+
+                '<a class="share-link" href="'+buildShareUrl(loc.slug)+'" onclick="event.preventDefault(); window.__shareStore(\''+loc.slug.replace(/'/g,"\\'")+'\', \''+loc.name.replace(/'/g,"\\'")+'\');" style="display:inline-block;margin-top:.5em;text-decoration:underline;">'+shareLabel+'</a>'+
+                '<img src="'+loc.image+'" style="width:100%;margin-top:.5em;border-radius:4px;"/>'+
+              '</div>';
+
+            var marker = L.marker([loc.lat, loc.lng]).bindPopup(popupHtml, { maxWidth:260, autoPan:true, autoPanPadding:[30,30] });
+            clusterGroup.addLayer(marker);
+
+            var li = document.createElement('li'); li.className='locator-item store-locator-entry';
+            li.innerHTML =
+               // — IMAGE CARD —
+              '<div class="card store-image-card">' +
+                '<div class="card__section">' +
+                  '<img src="' + loc.image + '" alt="' + loc.name + '" class="store-image"/>' +
+                '</div>' +
+              '</div>' +
+              
+              // — INFO CARD —
+              '<div class="card store-info-card">' +
+                '<div class="card__section">' +
+                  '<h4>' + loc.name + '</h4>' +
+                  '<p>' + loc.address + '</p>' +
+                  '<span class="store-distance"></span>' +  // filled later
+                  '<div class="store-contact">' +
+                    '<a href="tel:' + loc.phone + '">' + loc.phone + '</a><br>' +
+                    '<a href="mailto:' + loc.email + '">' + loc.email + '</a><br>' +
+                    '<a href="' + loc.website + '" target="_blank">' + loc.website + '</a>' +
+                  '</div>' +
+                  '<a class="directions-btn" href="https://www.google.com/maps/dir/?api=1&destination=' +
+                    loc.lat + ',' + loc.lng + '" target="_blank">' + directionsLabel + '</a>' +
+                '</div>' +
+              '</div>';
+
+            // Append Share button to the info card
+            var infoCard = li.querySelector('.store-info-card .card__section');
+            var shareBtn = document.createElement('button');
+            shareBtn.type = 'button';
+            shareBtn.className = 'share-btn';
+            shareBtn.textContent = shareLabel;
+            shareBtn.addEventListener('click', function(e){
+              e.stopPropagation();
+              window.__shareStore(loc.slug, loc.name);
+            });
+            infoCard.appendChild(shareBtn);
+
+            li.addEventListener('click', function(){ map.setView([loc.lat, loc.lng],8); marker.openPopup(); });
+
+            // Update list to this showroom only on pin click
+            marker.on('click', function(){
+              listEl.innerHTML = '';
+              listEl.appendChild(li);
+            });
+
+            listEl.appendChild(li);
+            listItems.push({ el: li, marker: marker, data: loc });
+          });
+          map.addLayer(clusterGroup);
+
+          var rf = document.getElementById('region-filter');
+          Object.keys(regions).sort().forEach(function(r){ var opt=document.createElement('option'); opt.value=r; opt.textContent=r; rf.appendChild(opt); });
+
+          rf.addEventListener('change', function(e){
+            var val = e.target.value; clusterGroup.clearLayers(); listEl.innerHTML = ''; var bounds = [];
+            listItems.forEach(function(item){ if(val==='all'||item.data.region===val){ clusterGroup.addLayer(item.marker); listEl.appendChild(item.el); bounds.push(item.marker.getLatLng()); }});
+            map.addLayer(clusterGroup);
+            if(bounds.length) map.fitBounds(bounds,{padding:[50,50]}); else map.setView([locations[0].lat,locations[0].lng],5);
+          });
+
+          function compute(lat,lng){
+            listItems.forEach(function(i){
+              var d=haversineDistance(lat,lng,i.data.lat,i.data.lng);
+              var span=i.el.querySelector('.store-distance');
+              if(span) span.textContent=d.toFixed(1)+distSuffix;
+              if(i.marker.isPopupOpen()){
+                var c=i.marker.getPopup().getContent();
+                c=c.replace(/<p class="store-distance">.*?<\/p>/,'<p class="store-distance">'+d.toFixed(1)+distSuffix+'</p>');
+                i.marker.getPopup().setContent(c);
+              }
+            });
+            listItems.sort(function(a,b){
+              return haversineDistance(lat,lng,a.data.lat,a.data.lng)-haversineDistance(lat,lng,b.data.lat,b.data.lng);
+            });
+            listItems.forEach(i=>listEl.appendChild(i.el));
+          }
+          
+          // ---------------------------------------------
+          // KSA & UAE rough boxes (for initial zoom preference)
+          var KSA = { minLat: 16,  maxLat: 33,  minLng: 34,  maxLng: 56 };
+          var UAE = { minLat: 22.5, maxLat: 26,  minLng: 51,  maxLng: 56 };
+          function inside(box, lat, lng) {
+            return lat >= box.minLat && lat <= box.maxLat && lng >= box.minLng && lng <= box.maxLng;
+          }
+          // ---------------------------------------------
+
+          // Geolocation + fallback
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(pos) {
+              var lat = pos.coords.latitude, lng = pos.coords.longitude;
+              compute(lat, lng);
+              if (inside(KSA, lat, lng) || inside(UAE, lat, lng)) {
+                map.setView([lat, lng], 8);
+              } else {
+                map.fitBounds(clusterGroup.getBounds().pad(0.1));
+              }
+            }, function() {
+              map.fitBounds(clusterGroup.getBounds().pad(0.1));
+            }, { timeout: 3000 });
+          } else {
+            map.fitBounds(clusterGroup.getBounds().pad(0.1));
+          }
+          // ---------------------------------------------
+
+          document.getElementById('locator-search').addEventListener('input', function(e){
+            var t=e.target.value.toLowerCase();
+            listItems.forEach(i=>i.el.style.display = i.el.textContent.toLowerCase().includes(t) ? 'flex' : 'none');
+          });
+          document.getElementById('locate-btn').addEventListener('click', function(){
+            if(navigator.geolocation){
+              navigator.geolocation.getCurrentPosition(function(pos){
+                compute(pos.coords.latitude,pos.coords.longitude);
+                map.setView([pos.coords.latitude,pos.coords.longitude],8);
+              },function(){
+                fetch('https://ipapi.co/json/').then(r=>r.json()).then(ip=>{
+                  compute(ip.latitude,ip.longitude);
+                  map.setView([ip.latitude,ip.longitude],8);
+                });
+              },{timeout:5000});
+            }
+          });
+
+          // Global share handler (used by popup + button)
+          window.__shareStore = function(slug, name){
+            shareLink(buildShareUrl(slug), name);
+          };
+
+          // === Deep-link: open specific store by slug, or nearest to lat/lng ===
+          (function handleDeepLink(){
+            var params = new URLSearchParams(window.location.search);
+            var wanted = params.get('store');
+            var lat = parseFloat(params.get('lat'));
+            var lng = parseFloat(params.get('lng'));
+
+            if (wanted) {
+              var target = listItems.find(function(i){ return slugify(i.data.name) === slugify(wanted); });
+              if (target) {
+                map.setView([target.data.lat, target.data.lng], 10);
+                target.marker.openPopup();
+                listEl.innerHTML = '';
+                listEl.appendChild(target.el);
+                return;
+              }
+            }
+            if (!isNaN(lat) && !isNaN(lng)) {
+              var nearest = listItems
+                .map(function(i){ return { i:i, d:haversineDistance(lat, lng, i.data.lat, i.data.lng) }; })
+                .sort(function(a,b){ return a.d-b.d; })[0];
+              if (nearest) {
+                map.setView([nearest.i.data.lat, nearest.i.data.lng], 10);
+                nearest.i.marker.openPopup();
+                listEl.innerHTML = '';
+                listEl.appendChild(nearest.i.el);
+              }
+            }
+          })();
+        })
+        .catch(function(){ alert(mapError); });
+    });
+  </script>
+</div>

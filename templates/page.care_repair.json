@@ -1,0 +1,193 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "rich_text_Dettck": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_8wPfEM": {
+          "type": "heading",
+          "settings": {
+            "heading": "Care, Adjust, Repair",
+            "heading_size": "h0"
+          }
+        },
+        "image_LKVAqT": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/jeweler-files-ring.jpg"
+          }
+        },
+        "text_UaqjyF": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Keep your jewelry at its best with Fayendra’s expert care, adjustment, and repair services.<br/><br/>Our expert artisans ensure that each piece remains attractive and functional, retaining its brilliance for years to come.</p>"
+          }
+        },
+        "button_FL8x9x": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "request a repair",
+            "button_link": "https://unified-repairs-support.yity.dev/front/shop?url=fayendra-online.myshopify.com",
+            "button_style_secondary": true,
+            "button_traget_1": true,
+            "button_label_2": "track a repair",
+            "button_link_2": "https://unified-repairs-support.yity.dev/prepare-track/shop?url=fayendra-online.myshopify.com",
+            "button_style_secondary_2": true,
+            "button_traget_2": true
+          }
+        }
+      },
+      "block_order": [
+        "heading_8wPfEM",
+        "image_LKVAqT",
+        "text_UaqjyF",
+        "button_FL8x9x"
+      ],
+      "custom_css": [
+        ".rich-text__heading.h0 {margin-bottom: 5rem;}"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": false,
+        "padding_top": 64,
+        "padding_bottom": 52
+      }
+    },
+    "multicolumn_3Hy8HA": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_iiYdKb": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/mega-menu-154171-3-1213240077.jpg",
+            "title": "jewelry",
+            "text": "",
+            "link_label": "care",
+            "link": "shopify://pages/jewelry-care",
+            "custom_button": ""
+          }
+        },
+        "column_7WgxTd": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/mega-menu-154171-women-fashion-watches-593618508.jpg",
+            "title": "watches",
+            "text": "",
+            "link_label": "care",
+            "link": "shopify://pages/watches-care",
+            "custom_button": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_iiYdKb",
+        "column_7WgxTd"
+      ],
+      "settings": {
+        "className": "repair-options",
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 2,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "",
+        "animation_icon_allow": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "animationName": "",
+        "padding_top": 36,
+        "padding_bottom": 80
+      }
+    },
+    "care_repair_tpkJKK": {
+      "type": "care-repair",
+      "blocks": {
+        "heading_VVyfjj": {
+          "type": "heading",
+          "settings": {
+            "downimage": "shopify://shop_images/Rectangle_136.png",
+            "downheading": "jewelry",
+            "downlabels": "adjust or repair",
+            "downlinks": "https://fayendra-online.myshopify.com/pages/jewelry-adjust-or-repair",
+            "downlabel": "Care",
+            "downlink": "https://fayendra-online.myshopify.com/pages/jewelry-care"
+          }
+        },
+        "heading_wYkRth": {
+          "type": "heading",
+          "settings": {
+            "downimage": "shopify://shop_images/Rectangle_136.png",
+            "downheading": "watches",
+            "downlabels": "adjust or repair",
+            "downlinks": "https://fayendra-online.myshopify.com/pages/watches-adjust-or-repair",
+            "downlabel": "care",
+            "downlink": "https://fayendra-online.myshopify.com/pages/watches-care"
+          }
+        }
+      },
+      "block_order": [
+        "heading_VVyfjj",
+        "heading_wYkRth"
+      ],
+      "disabled": true,
+      "custom_css": [],
+      "settings": {
+        "top_heading": "Care, Adjust, Repair",
+        "image": "shopify://shop_images/Rectangle_135.png",
+        "heading": "Keep your jewelry at its best with Fayendra’s expert care, adjustment, and repair services. Our expert artisans ensure that each piece remains attractive and functional, retaining its brilliance for years to come.",
+        "button_label1": "Request a repair",
+        "button_link1": "https://unified-repairs-support.yity.dev/front/shop?url=fayendra-online.myshopify.com",
+        "button_label2": "Track a repair",
+        "button_link2": "https://unified-repairs-support.yity.dev/prepare-track/shop?url=fayendra-online.myshopify.com"
+      }
+    },
+    "repair_tracking_Ka8z69": {
+      "type": "repair-tracking",
+      "custom_css": [],
+      "settings": {
+        "api_url": "https://your-odoo-api-endpoint.com/repair_order_track",
+        "api_key": "YOUR_API_KEY",
+        "support_email": "support@fayendra.com",
+        "support_phone": "+1 (800) 123-4567"
+      }
+    },
+    "devider_QDtmEB": {
+      "type": "devider",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 60
+      }
+    }
+  },
+  "order": [
+    "main",
+    "rich_text_Dettck",
+    "multicolumn_3Hy8HA",
+    "care_repair_tpkJKK",
+    "repair_tracking_Ka8z69",
+    "devider_QDtmEB"
+  ]
+}

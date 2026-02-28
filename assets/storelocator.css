@@ -1,0 +1,92 @@
+.store-image-card {
+  flex: 0 0 20%;
+  max-width: 20%;
+}
+
+.store-image-card .card__section {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* force a 1:1 square */
+  overflow: hidden;    /* crop anything that overflows */
+}
+
+.store-info-card {
+  flex: 0 0 80%;
+  max-width: 80%;
+}
+
+/* make the <img> fill its square container */
+.store-image {
+  width: 100%;
+  height: 100%;      /* fill the parent’s square */
+  object-fit: cover; /* cover/center the image */
+  border-radius: 4px; 
+}
+
+/* Match the style of .directions-btn */
+.share-btn {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.8rem 1.rem;
+  background: #007bff;   /* blue */
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: .9rem;
+  transition: background .2s;
+}
+
+/* Hover effect */
+.share-btn:hover {
+  background: #0069d9;
+}
+
+/* Keep button text on one line */
+.directions-btn,
+.share-btn { white-space: nowrap; }
+
+/* Add horizontal gap between Directions ➜ Share in BOTH LTR/RTL */
+.directions-btn + .share-btn {
+  margin-inline-start: 0.5rem;   /* becomes left margin in LTR, right margin in RTL */
+}
+
+/* Optional: if you also show a link-style share inside popups */
+.directions-btn + .share-link {
+  margin-inline-start: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  /* 1) Stack image‐card + info‐card */
+  .locator-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* center both cards horizontally */
+    gap: 0.75rem;        /* space between image and info */
+  }
+
+  /* 2) Make both cards full‐width in that stack */
+  .store-image-card,
+  .store-info-card {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-right: 0;  /* remove any desktop margin */
+  }
+
+  /* 3) Force image wrapper to be a square */
+  .store-image-card .card__section {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* always 1:1 */
+    overflow: hidden;    /* crop overflow */
+  }
+
+  /* 4) Ensure the <img> fills its square */
+  .store-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px; /* same rounded corners as desktop */
+  }
+}
+
+
+

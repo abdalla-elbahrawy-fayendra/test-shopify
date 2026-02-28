@@ -1,0 +1,105 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 64,
+        "padding_bottom": 36
+      }
+    },
+    "collapsible_content_YMK6Cw": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_QNrt6A": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What the warranty covers",
+            "icon": "none",
+            "row_content": "<ul><li>Silver is pure 925 for silver products or stainless steel is 316 for stainless steel products (such as watches).</li><li>The embedded stones are of value, not glass or crystal.</li><li>All manufacturing defects and not the use or the normal wear and tear resulting from use, failure to follow product care advice or attempting to repair outside Fayendra workshops.</li></ul>",
+            "page": ""
+          }
+        },
+        "collapsible_row_tapHC6": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "The warranty does not cover",
+            "icon": "none",
+            "row_content": "<ul><li>Damage to products due to accidents or misuse.</li><li>Damage to products due to modification or attempt to repair.</li><li>Damage to products due to negligence after purchase or due to the normal wear and tear that results from use.</li><li>Damage to products as a result of not following the product care instructions.</li></li><li>*Please note that the rhodium, gold, and rose gold plating is normal to disappear over time, so please note that the Vendra warranty does not include that.*</li>",
+            "page": ""
+          }
+        },
+        "collapsible_row_8r9yhR": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Claims covered by the warranty",
+            "icon": "none",
+            "row_content": "<ul><li>In case that the silver caliber 925 for silver products or stainless steel is less than 316 for stainless steel products (such as watches).</li><li>In case that the stones are set with glass, plastic, or crystal, or they are not of value.</li><li>In case of stones falling due to improper installation before the customer use (any defects in the manufacture of the product and not as a result of use).</li>",
+            "page": ""
+          }
+        },
+        "collapsible_row_FhRdzc": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "In case that one of the mentioned defects is available",
+            "icon": "none",
+            "row_content": "<p>Replace the product with a piece of similar value or a piece of higher value and the customer pays the difference.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_FhRjze": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How to claim warranty",
+            "icon": "none",
+            "row_content": "<p>We kindly ask you to visit one of our showrooms to replace the defected product. Please kindly, keep the invoice and the certificate of guarantee in case of claiming the warranty.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_FhRjte": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Who the warranty includes",
+            "icon": "none",
+            "row_content": "<p>The guarantee includes the original buyer of the product labeled the brand Fayendra and to the subsequent owners of the product during the warranty period. The purchase receipt and the warranty card are considered evidence of the purchase of the product. The owners of Fayendra products must maintain the receipt and the certificate of warranty in case of a claim under this guarantee.</p>",
+            "page": ""
+          }
+        },
+      },
+      "block_order": [
+        "collapsible_row_QNrt6A",
+        "collapsible_row_tapHC6",
+        "collapsible_row_8r9yhR",
+        "collapsible_row_FhRdzc",
+        "collapsible_row_FhRjze",
+        "collapsible_row_FhRjte"
+      ],
+      "settings": {
+        "caption": "",
+        "heading": "",
+        "heading_size": "h2",
+        "heading_alignment": "center",
+        "layout": "none",
+        "color_scheme": "",
+        "container_color_scheme": "",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 80
+      }
+    }
+  },
+  "order": [
+    "main",
+    "collapsible_content_YMK6Cw"
+  ]
+}

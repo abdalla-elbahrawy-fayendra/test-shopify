@@ -1,0 +1,52 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 64,
+        "padding_bottom": 72
+      }
+    },
+    "vertical_tabs_WxAFNE": {
+      "type": "vertical-tabs",
+      "blocks": {
+        "tab_block_JzUQpL": {
+          "type": "tab_block",
+          "settings": {
+            "heading": "gemstone care",
+            "row_content": "<p><strong>Sapphires </strong>sapphires are durable, yet can be scratched by rough surfaces. Clean your sapphire jewelry with warm, soapy water and a soft brush. Avoid harsh chemicals and keep them apart to avoid scratches.</p><p><strong>Moissanite </strong>Moissanite is nearly as hard as diamond, which makes it scratch-resistant. Regularly clean with warm, soapy water or a light jewelry cleaner. Avoid harsh chemicals and store separately to avoid contact with other gemstones.</p><p><strong>Emeralds </strong>Emeralds are delicate and prone to chipping. Avoid using ultrasonic cleaners or steamers and instead clean gently with warm water and a soft towel. Keep away from severe temperatures and keep them carefully to avoid damage.</p><p><strong>Alexandrite </strong>Alexandrite is resilient, but may lose its color-changing effect when exposed to severe chemicals. Wash with warm, soapy water and a gentle brush. To avoid scratches, store in a soft pouch and keep out of direct sunlight.</p><p><strong>Aquamarine </strong>Aquamarine is rather hard, but can be damaged by sharp strikes. Clean with warm, soapy water and a delicate brush, but avoid ultrasonic cleaners. Store separately to avoid scratches and protect against harsh chemicals.</p><p><strong>Morganite </strong>Morganite is relatively delicate, so clean it gently with warm, soapy water. Avoid harsh chemicals and preserve it separately from harder gemstones.</p>"
+          }
+        },
+        "tab_block_Ej3zdw": {
+          "type": "tab_block",
+          "settings": {
+            "heading": "metal care",
+            "row_content": "<p><strong>Silver</strong> Silver is a delicate metal that scratches readily. To keep it in good condition, clean it on a regular basis using warm, soapy water and a soft cloth. Avoid exposing gold to severe chemicals such as chlorine, which can corrode the metal. Store Silver jewelry separately to avoid scratches from other pieces.</p><p><strong>Platinum</strong><p><strong>Steel</strong> Stainless steel is durable and tarnish-resistant, yet it can still absorb dirt and oil. Use a soft cloth and warm, soapy water to clean your steel jewelry. For harder stains, use a jewelry cleaner made exclusively for stainless steel. Store in a dry place to avoid moisture damage.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "tab_block_JzUQpL",
+        "tab_block_Ej3zdw"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 100
+      }
+    }
+  },
+  "order": [
+    "main",
+    "vertical_tabs_WxAFNE"
+  ]
+}

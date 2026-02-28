@@ -1,0 +1,245 @@
+{% comment %}
+  Section: Marketing Manager
+  Full form rebuild with clear markup and styling
+{% endcomment %}
+
+{% if request.locale == 'ar' %}
+  {% assign page_dir = 'rtl' %}
+{% else %}
+  {% assign page_dir = 'ltr' %}
+{% endif %}
+
+<section id="smoothie-job-content" class="smoothie-listing-page template-page-marketing-manager" dir="{{ page_dir }}">
+  <!-- Job Overview -->
+  <div class="job-page description">
+    <a href="/{{ request.locale }}/pages/career-opportunities" class="breadcrumb-link">View all listings</a>
+    <div class="overview-header">
+      <h1 class="job-title">Marketing Manager</h1>
+      <button class="job-apply">Apply Now</button>
+    </div>
+    <p class="job-summary">Jeddah, KSA | Full Time | 28 Nov 2024 | Marketing</p>
+  </div>
+
+  <!-- Application Form -->
+  <div class="job-page application-form">
+    <h2>Application Form <span class="required">*</span></h2>
+    <form id="smoothie-careers-form" class="job-form" method="post" action="https://careers.smooth.ie/application/submit" enctype="multipart/form-data">
+      <!-- hidden values -->
+      <input type="hidden" name="job_id" value="EcpSZ6dcDIe3661r">
+      <input type="hidden" name="page_url" id="smoothie-hidden-page-url">
+      <input type="hidden" name="shop_domain" value="{{ shop.domain }}">
+      <input type="hidden" name="user_name" value="{{ shop.domain }}">
+      <input type="hidden" name="job_title" value="Marketing Manager">
+
+      <!-- Name fields -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fname">First Name <span class="required">*</span></label>
+          <input type="text" id="fname" name="fname" required>
+        </div>
+        <div class="form-group">
+          <label for="lname">Last Name <span class="required">*</span></label>
+          <input type="text" id="lname" name="lname" required>
+        </div>
+      </div>
+
+      <!-- Contact & Resume -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">Email Address <span class="required">*</span></label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="resume">Resume (PDF, max 4MB) <span class="required">*</span></label>
+          <input type="file" id="resume" name="resume" accept="application/pdf,.doc,.docx" required>
+        </div>
+      </div>
+
+      <!-- Cover Letter -->
+      <div class="form-row full-width">
+        <div class="form-group">
+          <label for="cover_letter">Cover Letter (optional)</label>
+          <textarea id="cover_letter" name="cover_letter"></textarea>
+        </div>
+      </div>
+
+      <!-- GDPR -->
+      <div class="form-row full-width gdpr">
+        <input type="checkbox" id="smoothie-gdpr" name="gdpr" required>
+        <label for="smoothie-gdpr">I agree to Fayendra-Online’s <a href="/{{ request.locale }}/pages/privacy-policy" target="_blank">Privacy Policy</a> <span class="required">*</span></label>
+      </div>
+
+      <!-- Submit -->
+      <div class="form-row full-width submit-row">
+        <button type="submit" class="submit-button">Submit Application</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<style>
+  /* Hide Dawn banner */
+  .template-page-marketing-manager #shopify-section-page-banner,
+  .template-page-marketing-manager .page-header__image { display: none !important; }
+
+  .smoothie-listing-page {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    direction: {{ page_dir }};
+    font-family: sans-serif;
+    color: #333;
+    font-size: 1.1rem;
+  }
+
+  /* Breadcrumb */
+  .breadcrumb-link {
+    display: inline-block;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: #555;
+    text-decoration: none;
+  }
+  .breadcrumb-link:hover { text-decoration: underline; }
+
+  /* Header */
+  .overview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  .job-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+    text-transform: uppercase;
+  }
+  .job-apply {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid #333;
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .job-apply:hover { background: #f0f0f0; }
+
+  /* Summary line */
+  .job-summary {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Form */
+  .application-form h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+  .required { color: #e00; }
+
+  .job-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+  .form-row { display: contents; }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
+  }
+  .full-width { grid-column: 1 / -1; }
+
+  .job-form label {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+  }
+  .job-form input,
+  .job-form textarea {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .job-form textarea { min-height: 120px; }
+
+  .gdpr {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+  }
+
+  .submit-row {
+    text-align: {% if page_dir == 'rtl' %}left{% else %}right{% endif %};
+  }
+  .submit-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #fff;
+    background: #333;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .submit-button:hover { background: #555; }
+</style>
+
+<script>
+  function add_local_to_links() {
+    const parts = window.location.pathname.split('/');
+    const locale = parts[1];
+    if (locale === 'pages') return;
+    document.querySelectorAll('.breadcrumb-link').forEach(el => {
+      let href = el.getAttribute('href');
+      if (!href.startsWith(`/${locale}/`)) el.setAttribute('href', `/${locale}${href}`);
+    });
+  }
+
+  function addPageUrl() {
+    const path = window.location.pathname;
+    document.getElementById('smoothie-hidden-page-url').value = path;
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    add_local_to_links();
+    addPageUrl();
+
+    const resumeInput = document.getElementById('resume');
+    resumeInput.onchange = () => {
+      const maxMB = 4;
+      if (resumeInput.files[0].size > maxMB * 1048576) {
+        alert(`File is too big! Max ${maxMB}MB.`);
+        resumeInput.value = '';
+      }
+    };
+
+    if (window.location.search.includes('ty=1')) {
+      document.getElementById('smoothie-job-content').classList.add('thank-you');
+    }
+  });
+</script>
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org/",
+    "@type": "JobPosting",
+    "title": "Marketing Manager",
+    "datePosted": "2024-10-24",
+    "validThrough": "2024-11-28",
+    "hiringOrganization": {
+      "@type": "Organization",
+      "name": "Fayendra-Online"
+    },
+    "jobLocation": {
+      "@type": "Place",
+      "address": "Jeddah, KSA"
+    },
+    "employmentType": "FULL_TIME"
+  }
+</script>

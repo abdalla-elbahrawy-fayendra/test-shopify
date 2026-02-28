@@ -1,0 +1,74 @@
+.wishlist-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: #888;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.wishlist-button.wishlisted {
+  color: red;
+  transform: scale(1.2);
+}
+
+#wishlist-container ul {
+  list-style: none;
+  padding: 0;
+}
+
+#wishlist-container li {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#wishlist-container img {
+  width: 80px;
+  height: auto;
+  border: 1px solid #eee;
+  border-radius: 8px;
+}
+@keyframes pulse-badge {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.4);
+  }
+  60% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+#wishlist-count-badge.pulsing {
+  animation: pulse-badge 0.4s ease;
+}
+clearButton.addEventListener('click', function() {
+    localStorage.removeItem('wishlist');
+    refreshWishlist();
+    updateWishlistBadge(); // ✅ added here too
+});
+
+/* Mobile-specific wishlist tweaks */
+@media screen and (max-width: 749px) {
+  .wishlist-button {
+    font-size: 18px;        /* smaller heart */
+    padding: 0.2rem;        /* tighter hit-area */
+    line-height: 1;         /* remove extra height */
+  }
+
+  /* shrink & reposition the red count bubble */
+  #wishlist-count-badge {
+    width: 14px;
+    height: 14px;
+    font-size: 10px;
+    top: -4px;
+    right: -6px;
+  }
+
+  

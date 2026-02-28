@@ -1,0 +1,81 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "custom_liquid_B3VrNe": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<!-- Announcement Notice -->\n<div style=\"background-color: #fde047; color: #000; text-align: center; padding: 12px 0; font-size: 16px; font-weight: 500;\">\n  Dear valued customers, we would like to inform you that orders placed starting today may be delivered before Eid or after it.\n</div>",
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 0
+      }
+    },
+    "cart-items": {
+      "type": "main-cart-items",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "17387437965ff6e156": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "cart-footer": {
+      "type": "main-cart-footer",
+      "blocks": {
+        "subtotal": {
+          "type": "subtotal",
+          "settings": {}
+        },
+        "buttons": {
+          "type": "buttons",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "subtotal",
+        "buttons"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "padding_top": 20,
+        "padding_bottom": 72
+      }
+    },
+    "17535220767ff5b4a0": {
+      "type": "apps",
+      "blocks": {
+        "wrapin_gift_wrap_options_app_block_GXn4fb": {
+          "type": "shopify://apps/wrapin-gift-wrap-options/blocks/app-block/31c9fd89-9221-4847-aeee-86a226a0a620",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "wrapin_gift_wrap_options_app_block_GXn4fb"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "custom_liquid_B3VrNe",
+    "cart-items",
+    "17387437965ff6e156",
+    "cart-footer",
+    "17535220767ff5b4a0"
+  ]
+}

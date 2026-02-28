@@ -1,0 +1,179 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "image_with_text_dN4aMq": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_D4madN": {
+          "type": "heading",
+          "settings": {
+            "heading": "Contact US",
+            "heading_size": "h1"
+          }
+        },
+        "text_m3JhCB": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Our FAYENDRA Advisors are ready to help you select the ideal present, refine your style, or fulfill your desires. Please select a method of contact from the options provided below.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_D4madN",
+        "text_m3JhCB"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/ContactUs.jpg",
+        "height": "adapt",
+        "desktop_image_width": "large",
+        "layout": "image_first",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_QjThjy": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_AqAAJV": {
+          "type": "column",
+          "settings": {
+            "icon_svg": "shopify://shop_images/contact-icon-call.svg",
+            "image": "shopify://shop_images/contact-call.gif",
+            "title": "Call Us",
+            "text": "<p>Fayendra Client Relations hours</p><p>Weekdays - 10 a.m. to 10 p.m.</p><p>friday & saturday - 10 a.m. to 12 p.m.</p>",
+            "link_label": "tel 920011955",
+            "link": "tel:920011955",
+            "custom_button": ""
+          }
+        },
+        "column_z7fkQy": {
+          "type": "column",
+          "settings": {
+            "icon_svg": "shopify://shop_images/contact-icon-email.svg",
+            "image": "shopify://shop_images/contact-email.gif",
+            "title": "E-Email Us",
+            "text": "<p>A Fayendra representative will contact you shortly. We appreciate your interest in our luxury jewelry.</p>",
+            "link_label": "",
+            "link": "",
+            "custom_button": "<modal-opener\n    class=\"custom-popup-modal__opener\"\n    data-modal=\"#PopupModal-contact_email\"\n  >\n    <button\n      id=\"customPopup-contact_email\"\n      class=\"link animate-arrow\"\n      type=\"button\"\n      aria-haspopup=\"dialog\"\n    >{{ 'general.contact.send_email' | t }}</button>\n  </modal-opener>"
+          }
+        },
+        "column_RM9fjE": {
+          "type": "column",
+          "settings": {
+            "icon_svg": "shopify://shop_images/contact-icon-store.svg",
+            "image": "shopify://shop_images/icon-locator.gif",
+            "title": "Visit Us",
+            "text": "<p>Visit a Fayendra boutique near you to explore our classic designs.</p>",
+            "link_label": "find a showroom",
+            "link": "shopify://pages/store-locator",
+            "custom_button": ""
+          }
+        },
+        "column_n8Pr6t": {
+          "type": "column",
+          "settings": {
+            "icon_svg": "shopify://shop_images/contact-icon-chat.svg",
+            "image": "shopify://shop_images/icon-language.gif",
+            "title": "live chat",
+            "text": "<p>Connect with a Fayendra Representative when available.</p>",
+            "link_label": "Chat Now",
+            "link": "https://wa.me/966536015489?text=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%20%D8%A3%D9%88%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%AD%D9%88%D9%84%20%D9%85%D9%86%D8%AA%D8%AC%D8%A7%D8%AA%D9%83%D9%85",
+            "custom_button": ""
+          }
+        },
+        "column_hDaMLd": {
+          "type": "column",
+          "disabled": true,
+          "settings": {
+            "icon_svg": "shopify://shop_images/contact-icon-calendar.svg",
+            "image": "shopify://shop_images/icon-calendar.gif",
+            "title": "Appointments",
+            "text": "<p>Discover our collections with a personalized appointment at your convenience.</p>",
+            "link_label": "book an appointment",
+            "link": "#",
+            "custom_button": ""
+          }
+        },
+        "column_WnYDNa": {
+          "type": "column",
+          "settings": {
+            "icon_svg": "shopify://shop_images/contact-icon-help.svg",
+            "image": "shopify://shop_images/info.gif",
+            "title": "FAQ",
+            "text": "<p>Find quick answers to the most commonly asked questions.</p>",
+            "link_label": "explore our FAQ",
+            "link": "shopify://pages/help-center",
+            "custom_button": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_AqAAJV",
+        "column_z7fkQy",
+        "column_RM9fjE",
+        "column_n8Pr6t",
+        "column_hDaMLd",
+        "column_WnYDNa"
+      ],
+      "settings": {
+        "className": "contact-columns",
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "third",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "none",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "",
+        "animation_icon_allow": true,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "animationName": "",
+        "padding_top": 36,
+        "padding_bottom": 72
+      }
+    },
+    "custom_liquid_MDiGjp": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "{%- render \"contact-popup-form\" -%}",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_with_text_dN4aMq",
+    "multicolumn_QjThjy",
+    "custom_liquid_MDiGjp"
+  ]
+}

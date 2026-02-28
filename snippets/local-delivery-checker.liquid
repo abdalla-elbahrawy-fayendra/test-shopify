@@ -1,0 +1,140 @@
+{%- comment -%}
+  Local Delivery Checker (Riyadh)
+  - Accepts 5-digit Saudi postcodes
+  - Only prefixes starting with "11" (configurable via theme setting ld_prefixes)
+  - Shows ✓ (green) if eligible, ✗ (red) if not
+  - English + Arabic helper text
+{%- endcomment -%}
+
+{%- assign ld_prefixes = settings.ld_prefixes | default: '11' -%}
+{%- assign ld_helper_text_en = settings.ld_helper_text_en | default: 'Enter your 5-digit Riyadh postcode' -%}
+{%- assign ld_helper_text_ar = settings.ld_helper_text_ar | default: 'أدخل الرمز البريدي الخاص بالرياض (٥ أرقام)' -%}
+
+<div
+  class="local-delivery-checker"
+  data-prefixes="{{ ld_prefixes | escape }}"
+>
+  <label class="local-delivery-label">
+    <span class="local-delivery-helper-en">
+      {{ ld_helper_text_en }}
+    </span>
+    <br>
+    <span class="local-delivery-helper-ar" dir="rtl">
+      {{ ld_helper_text_ar }}
+    </span>
+  </label>
+
+  <div class="local-delivery-input-row">
+    <input
+      type="text"
+      inputmode="numeric"
+      pattern="\d*"
+      maxlength="5"
+      class="field__input local-delivery-input"
+      placeholder="1 1 • • •"
+      aria-label="Riyadh postcode"
+    >
+    <button
+      type="button"
+      class="button button--secondary local-delivery-check-button"
+    >
+      Check / تحقق
+    </button>
+  </div>
+
+  <p class="local-delivery-result" aria-live="polite"></p>
+</div>
+
+<script>
+(function() {
+  function initLocalDeliveryChecker(container) {
+    if (!container) return;
+
+    var prefixesAttr = container.getAttribute('data-prefixes') || '11';
+    var allowedPrefixes = prefixesAttr
+      .split(',')
+      .map(function(p) { return p.trim(); })
+      .filter(function(p) { return p.length > 0; });
+
+    var input = container.querySelector('.local-delivery-input');
+    var button = container.querySelector('.local-delivery-check-button');
+    var result = container.querySelector('.local-delivery-result');
+
+    if (!input || !button || !result) return;
+
+    function resetResult() {
+      result.textContent = '';
+      result.className = 'local-delivery-result';
+    }
+
+    function setResult(message, type) {
+      // type: 'success', 'warning', 'error'
+      var baseClass = 'local-delivery-result';
+      if (type === 'success') {
+        result.className = baseClass + ' text-success';
+      } else if (type === 'warning') {
+        result.className = baseClass + ' text-warning';
+      } else if (type === 'error') {
+        result.className = baseClass + ' text-error';
+      } else {
+        result.className = baseClass;
+      }
+      result.textContent = message;
+    }
+
+    function cleanPostcode(value) {
+      return (value || '').replace(/\D/g, '').slice(0, 5);
+    }
+
+    function checkPostcode() {
+      var postcode = cleanPostcode(input.value);
+      input.value = postcode;
+
+      if (postcode.length !== 5) {
+        setResult(
+          '✗ Please enter a valid 5-digit postcode / ✗ الرجاء إدخال رمز بريدي صحيح من ٥ أرقام',
+          'warning'
+        );
+        return;
+      }
+
+      var isRiyadh = allowedPrefixes.some(function(prefix) {
+        return postcode.indexOf(prefix) === 0;
+      });
+
+      if (isRiyadh) {
+        setResult(
+          '✓ Local delivery available in Riyadh / ✓ التوصيل المحلي متاح في الرياض',
+          'success'
+        );
+      } else {
+        setResult(
+          '✗ Local delivery is not available for this postcode / ✗ التوصيل المحلي غير متاح لهذا الرمز البريدي',
+          'error'
+        );
+      }
+    }
+
+    input.addEventListener('input', function() {
+      this.value = cleanPostcode(this.value);
+      resetResult();
+    });
+
+    input.addEventListener('keyup', function(event) {
+      if (event.key === 'Enter') {
+        checkPostcode();
+      }
+    });
+
+    button.addEventListener('click', checkPostcode);
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var containers = document.querySelectorAll('.local-delivery-checker');
+    if (!containers || !containers.length) return;
+    containers.forEach(function(container) {
+      initLocalDeliveryChecker(container);
+    });
+  });
+})();
+</script>

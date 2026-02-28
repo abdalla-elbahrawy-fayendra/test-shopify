@@ -1,0 +1,146 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "custom_css": [
+        ".rte {border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.33); padding-bottom: 3rem;}"
+      ],
+      "settings": {
+        "padding_top": 64,
+        "padding_bottom": 0
+      }
+    },
+    "collapsible_content_XDGDkW": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_wjpQdt": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "1. What Are Cookies?",
+            "icon": "none",
+            "row_content": "<p>When you visit a website, cookies (little text files) are stored on your device (computer, smartphone, tablet). These files allow the website to remember your actions and preferences over time, eliminating the need for you to re-enter them each time you visit the site. Cookies can also improve your surfing experience by providing information about how you use the page.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_iV6fXz": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "2. How We Use Cookies",
+            "icon": "none",
+            "row_content": "<p>Fayendra uses cookies to improve the functionality and performance of its website. The cookies we utilize are generally divided into the following categories:  Essential Cookies These cookies are required for the website to function properly. They allow you to navigate and use the site's features, such as accessing secure areas.  Performance and Analytics Cookies These cookies collect information about how users use our website, such as which pages they visit the most frequently. This information allows us to better understand how our website is used and how we can improve it. Functionality Cookies These cookies enable our website to remember your preferences (such as username, language, or region) and provide more tailored services.  Advertising Cookies These cookies are used to display advertisements that are relevant to you and your preferences. They also assist us assess the efficacy of our advertising strategies.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_yqNwm4": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "3. Third-Party Cookies",
+            "icon": "none",
+            "row_content": "<p>In addition to our own cookies, we may utilize third-party cookies offered by reliable partners. These cookies are used to improve performance, track analytics, and display advertisements. For example, we may employ Google Analytics to monitor how people interact with our website, or social networking plugins to enable you to share information on networks such as Facebook and Instagram.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_qFR8bD": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "4. Your Choices Regarding Cookies",
+            "icon": "none",
+            "row_content": "<p>To manage cookies, navigate to your browser's settings. Most browsers allow you to regulate cookies, including blocking or deleting them, but this may limit your ability to access certain aspects of our website.  Installing the Google Analytics Opt-out Browser Add-on allows you to disable analytics and advertising cookies. To update your advertising preferences, go to the Network Advertising Initiative (NAI) opt-out page or adjust your ad settings in your social network account.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_Ga6T7b": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "5. Changes to Our Cookies Policy",
+            "icon": "none",
+            "row_content": "<p>We may amend our Cookies Policy periodically to reflect changes in our practices or for other operational, legal, or regulatory reasons. Any modifications will be noted on this website, and the revised policy will include an effective date.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_wjpQdt",
+        "collapsible_row_iV6fXz",
+        "collapsible_row_yqNwm4",
+        "collapsible_row_qFR8bD",
+        "collapsible_row_Ga6T7b"
+      ],
+      "settings": {
+        "caption": "",
+        "heading": "",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "color_scheme": "",
+        "container_color_scheme": "",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 80
+      }
+    },
+    "quick_link_tT4eTE": {
+      "type": "quick-link",
+      "blocks": {
+        "link_MKffHR": {
+          "type": "link",
+          "settings": {
+            "link_label": "Terms Of use",
+            "link": "shopify://pages/terms-of-use"
+          }
+        },
+        "link_KzD6dd": {
+          "type": "link",
+          "settings": {
+            "link_label": "Cookies Policy",
+            "link": "shopify://pages/cookies-policy"
+          }
+        },
+        "link_HwK69w": {
+          "type": "link",
+          "settings": {
+            "link_label": "Cookies Settings",
+            "link": "shopify://pages/cookies-policy"
+          }
+        },
+        "link_ELQgPV": {
+          "type": "link",
+          "settings": {
+            "link_label": "Payment Option",
+            "link": "shopify://pages/payment-options"
+          }
+        }
+      },
+      "block_order": [
+        "link_MKffHR",
+        "link_KzD6dd",
+        "link_HwK69w",
+        "link_ELQgPV"
+      ],
+      "settings": {
+        "title": "Quick Links",
+        "heading_size": "h2",
+        "columns_desktop": 2,
+        "column_alignment": "center",
+        "padding_top": 16,
+        "padding_bottom": 80
+      }
+    }
+  },
+  "order": [
+    "main",
+    "collapsible_content_XDGDkW",
+    "quick_link_tT4eTE"
+  ]
+}

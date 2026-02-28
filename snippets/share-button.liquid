@@ -1,0 +1,111 @@
+{% comment %}
+  Renders share button.
+  Accepts:
+  - block: {Object} passes in the block information.
+  - share_link: {String} url to be added to the input the user will get/copy.
+
+  Usage:
+  {% render 'share-button',
+    block: block,
+    share_link: share_url
+  %}
+{% endcomment %}
+<script src="{{ 'share.js' | asset_url }}" defer="defer"></script>
+<modal-opener
+  class="custom-popup-modal__opener share"
+  data-modal="#PopupModal-share"
+>
+  <button
+    id="ProductPopup-share"
+    class="icon-button custom-popup-modal__button"
+    type="button"
+    aria-haspopup="dialog"
+  >
+    <span class="svg-wrapper">
+      {{- 'icon-share.svg' | inline_asset_content -}}
+      <img class="animated-icon" src="{{ 'share.gif' | asset_url }}" alt="close">
+    </span>
+  </button>
+</modal-opener>
+
+<modal-dialog id="PopupModal-share" class="custom-popup-modal">
+  <div
+    role="dialog"
+    aria-label="Share"
+    aria-modal="true"
+    class="custom-popup-modal__content"
+    tabindex="-1"
+  >
+    <button
+      id="ModalClose-mail"
+      type="button"
+      class="custom-popup-modal__toggle"
+      aria-label="{{ 'accessibility.close' | t }}"
+    >
+      <span class="animated-close-icon">
+        {{- 'icon-close.svg' | inline_asset_content -}}
+        <img class="animated-icon" src="{{ 'close.gif' | asset_url }}" alt="close">
+      </span>
+    </button>
+    <div class="custom-popup-modal__content-info">
+      <h2 class="h2">share</h2>
+      <div class="share-buttons">
+        <!-- Facebook Share Button -->
+        <a
+          href="https://www.facebook.com/sharer/sharer.php?u={{ product.url | url_encode }}"
+          target="_blank"
+          class="share-btn fb"
+        >
+          <span class="svg-wrapper">
+            {{- 'icon-facebook.svg' | inline_asset_content -}}
+            <img class="animated-icon" src="{{ 'facebook.gif' | asset_url }}" alt="facebook">
+          </span>
+        </a>
+
+        <!-- LinkedIn Share Button -->
+        <a
+          href="https://www.linkedin.com/sharing/share-offsite/?url={{ product.url | url_encode }}"
+          target="_blank"
+          class="share-btn linkedin"
+        >
+          <span class="svg-wrapper">
+            {{- 'icon-linkdin.svg' | inline_asset_content -}}
+            <img class="animated-icon" src="{{ 'linkedin.gif' | asset_url }}" alt="linkedin">
+          </span>
+        </a>
+
+        <!-- WhatsApp Share Button -->
+        <a
+          href="https://api.whatsapp.com/send?text=Check out this product: {{ product.title }} - {{ product.url | url_encode }}"
+          target="_blank"
+          class="share-btn whatsapp"
+        >
+          <span class="svg-wrapper">
+            {{- 'icon-whatapp.svg' | inline_asset_content -}}
+            <img class="animated-icon" src="{{ 'whatsapp.gif' | asset_url }}" alt="whatsapp">
+          </span>
+        </a>
+
+        <!-- Email Share Button -->
+        <a
+          href="mailto:?subject={{ product.title }}&body=Check out this product: {{ product.url | url_encode }}"
+          target="_blank"
+          class="share-btn email"
+        >
+          <span class="svg-wrapper">
+            {{- 'icon-email.svg' | inline_asset_content -}}
+            <img class="animated-icon" src="{{ 'mail.gif' | asset_url }}" alt="email">
+          </span>
+        </a>
+
+        <!-- Instagram Share Button -->
+        <a href="https://www.instagram.com/yourprofile" target="_blank" class="share-btn instagram">
+          <span class="svg-wrapper">
+            {{- 'icon-instagram.svg' | inline_asset_content -}}
+            <img class="animated-icon" src="{{ 'instagram.gif' | asset_url }}" alt="instagram">
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</modal-dialog>

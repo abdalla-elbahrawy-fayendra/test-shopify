@@ -1,0 +1,150 @@
+<div class="care-repaire">
+  <div class="page-width">
+            <h2>{{ section.settings.top_heading }}</h2>
+            {{
+                section.settings.image
+                | image_url: width: 1500
+                | image_tag: sizes: sizes, widths: widths, fetchpriority: fetch_priority
+              }}
+            <p>{{ section.settings.heading }}</p>
+            <a href="{{ section.settings.button_link1 }}">
+              {{ section.settings.button_label1 | escape }}
+            </a>
+            <a href="{{ section.settings.button_link2 }}">
+              {{ section.settings.button_label2 | escape }}
+            </a>
+       
+       
+          <div>
+            {%- for block in section.blocks -%}
+              {% case block.type %}
+                {%- when 'heading' -%}
+                  <h2 class="imges">
+                    {{ block.settings.downheading }}
+                  </h2>
+                {{
+                block.settings.downimage
+                | image_url: width: 1500
+                | image_tag: sizes: sizes, widths: widths, fetchpriority: fetch_priority
+              }}
+               <a href="{{ block.settings.downlink }}">
+              {{ block.settings.downlabel | escape }}
+            </a>
+                
+                <a href="{{ block.settings.downlinks }}">
+              {{ block.settings.downlabels | escape }}
+            </a>
+                 
+              {%- endcase -%}
+            {%- endfor -%}
+          </div>
+       
+     
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Care and Repair",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+     {
+          "type": "text",
+          "id": "top_heading",
+          "default": "Top Heading",
+          "label": "Top Heading"
+      },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:sections.image-with-text.settings.image.label"
+    },
+     {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "Content",
+          "label": "Content"
+        },
+     {
+          "type": "text",
+          "id": "button_label1",
+          "default": "Button Label 1",
+          "label": "Button Label"
+        },
+        {
+          "type": "url",
+          "id": "button_link1",
+          "label": "Button Link 1"
+        },
+       {
+          "type": "text",
+          "id": "button_label2",
+          "default": "Button Label 2",
+          "label": "Button Label 2"
+        },
+        {
+          "type": "url",
+          "id": "button_link2",
+          "label": "Button Link 2"
+        }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "t:sections.image-with-text.blocks.heading.name",
+      "limit": 2,
+      "settings": [
+        {
+      "type": "image_picker",
+      "id": "downimage",
+      "label": "Down Image"
+        },
+        {
+          "type": "text",
+          "id": "downheading",
+          "default": "Down Heading",
+          "label": "Down Heading"
+        },
+       {
+          "type": "text",
+          "id": "downlabels",
+          "default": "Down Label",
+          "label": "Down Label",
+          "info": "Down Label"
+        },
+        {
+          "type": "url",
+          "id": "downlinks",
+          "label": "Down Link"
+        },
+         {
+          "type": "text",
+          "id": "downlabel",
+          "default": "Down Label",
+          "label": "Down Label",
+          "info": "Down Label"
+        },
+        {
+          "type": "url",
+          "id": "downlink",
+          "label": "Down Link"
+        }
+        
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Care and Repair",
+      "blocks": [
+        {
+          "type": "heading"
+        }
+      
+      ]
+    }
+  ]
+}
+{% endschema %}

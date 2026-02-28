@@ -1,0 +1,194 @@
+{%- comment -%}
+Gift Options Modal (Dawn 15.1.0)
+- EN/AR label auto-switch (RTL-aware)
+- Loads unminified assets (gift-options.css / gift-options.js)
+- Cart-page only; saves to cart attributes:
+  - Gift wrapping (Yes/"")
+  - Gift card (Yes/"")
+  - Sender name (string)
+  - Card message (plain, ≤150 chars)
+  - Card message HTML (rich text)
+{%- endcomment -%}
+
+{%- assign locale_code = request.locale.iso_code | downcase -%}
+{%- assign locale_prefix = locale_code | slice: 0, 2 -%}
+{%- if locale_prefix == 'ar' -%}
+  {%- assign is_ar = true -%}
+  {%- assign dir = 'rtl' -%}
+{%- else -%}
+  {%- assign is_ar = false -%}
+  {%- assign dir = 'ltr' -%}
+{%- endif -%}
+
+{%- if template.name == 'cart' -%}
+  {{ 'gift-options.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'gift-options.js' | asset_url }}" defer="defer"></script>
+
+  <!-- Trigger button + summary -->
+  <div class="gift-btn-wrap" dir="{{ dir }}">
+    <button type="button" class="gift-open-btn" id="GiftOpenBtn" data-is-ar="{% if is_ar %}true{% else %}false{% endif %}">
+      <span class="emoji">🎁</span>
+      {% if is_ar %}هل هي هدية؟{% else %}Is this a gift?{% endif %}
+    </button>
+    <div class="gift-summary" id="GiftSummary" aria-live="polite">
+      {%- assign wrp = cart.attributes['Gift wrapping'] -%}
+      {%- assign card = cart.attributes['Gift card'] -%}
+      {%- assign ribbon = cart.attributes['Gift ribbon'] -%}
+      {%- assign msg  = cart.attributes['Card message'] -%}
+      {%- if wrp != blank or card != blank or ribbon != blank or msg != blank -%}
+        {%- if is_ar -%}
+          {%- if wrp == 'Yes' -%}تغليف كهدية ✓{%- if card == 'Yes' or ribbon == 'Yes' or msg != blank -%} {%- endif -%}{%- endif -%}<br>
+          {%- if ribbon == 'Yes' -%}شريط هدية ✓{%- if card == 'Yes' or msg != blank -%} {%- endif -%}{%- endif -%}<br>
+          {%- if card == 'Yes' or msg != blank -%}بطاقة إهداء ✓{%- endif -%}<br>
+        {%- else -%}
+          {%- if wrp == 'Yes' -%}Gift wrapping ✓{%- if ribbon == 'Yes' or card == 'Yes' or msg != blank -%} — {%- endif -%}{%- endif -%}
+          {%- if ribbon == 'Yes' -%}Gift ribbon ✓{%- if card == 'Yes' or msg != blank -%} — {%- endif -%}{%- endif -%}
+          {%- if card == 'Yes' or msg != blank -%}Gift card ✓{%- endif -%}
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="gift-modal-backdrop" id="GiftBackdrop" aria-hidden="true"></div>
+  <div class="gift-modal" id="GiftModal" role="dialog" aria-modal="true" aria-labelledby="GiftModalTitle" style="display:none;" dir="{{ dir }}">
+    <div class="gift-modal__dialog">
+      <div class="gift-modal__header">
+        <h3 class="gift-modal__title" id="GiftModalTitle">{% if is_ar %}خيارات الهدية للطلب{% else %}Gift options for your order{% endif %}</h3>
+        <button class="gift-modal__close" id="GiftCloseBtn" aria-label="Close">×</button>
+      </div>
+
+      <div class="gift-modal__body">
+        <div class="gift-options-grid">
+          <!-- Gift Wrapping -->
+          <label class="gift-card">
+            <img src="{{ 'gift-wrapping.jpg' | asset_url }}" alt="{% if is_ar %}تغليف هدية{% else %}Gift wrapping{% endif %}">
+            <div class="gift-card__content">
+              <span class="gift-card__title">
+                <input class="gift-checkbox" type="checkbox" id="GiftWrapChk" {% if cart.attributes['Gift wrapping'] == 'Yes' %}checked{% endif %}>
+                <span>{% if is_ar %}تغليف هدية{% else %}Gift Wrapping{% endif %}</span>
+              </span>
+            </div>
+            <div class="gift-card__content">
+              <p class="gift-card__desc">{% if is_ar %}تغليف أنيق لجميع عناصر السلة.{% else %}Elegant wrap for all items in your cart.{% endif %}</p>
+            </div>
+          </label>
+
+          <!-- Gift Card -->
+          <label class="gift-card">
+            <img src="{{ 'gift-card.jpg' | asset_url }}" alt="{% if is_ar %}بطاقة إهداء{% else %}Gift card{% endif %}">
+            <div class="gift-card__content">
+              <span class="gift-card__title">
+                <input class="gift-checkbox" type="checkbox" id="GiftCardChk" {% if cart.attributes['Gift card'] == 'Yes' or cart.attributes['Card message'] != blank %}checked{% endif %}>
+                <span>{% if is_ar %}بطاقة إهداء{% else %}Gift Card{% endif %}</span>
+              </span>
+            </div>
+            <div class="gift-card__content">
+              <p class="gift-card__desc">{% if is_ar %}أضف رسالة مع تنسيق غني.{% else %}Add a personalized message with rich formatting.{% endif %}</p>
+            </div>
+          </label>
+
+          <!-- Gift Ribbon -->
+          <label class="gift-card">
+            <img src="{{ 'gift-ribbon.jpg' | asset_url }}" alt="{% if is_ar %}شريط هدية{% else %}Gift ribbon{% endif %}">
+            <div class="gift-card__content">
+              <span class="gift-card__title">
+                <input class="gift-checkbox" type="checkbox" id="GiftRibbonChk" {% if cart.attributes['Gift ribbon'] == 'Yes' %}checked{% endif %}>
+                <span>{% if is_ar %}شريط هدية{% else %}Gift Ribbon{% endif %}</span>
+              </span>
+            </div>
+            <div class="gift-card__content">
+              <p class="gift-card__desc">{% if is_ar %}شريط زخرفي أنيق لهديتك.{% else %}Elegant decorative ribbon for your gift.{% endif %}</p>
+            </div>
+          </label>
+        </div>
+
+        <!-- Ribbon Message (shown if Gift Ribbon checked) -->
+        <div class="gift-editor" id="GiftRibbonMsgWrap" style="{% if cart.attributes['Gift ribbon'] == 'Yes' %}{% else %}display:none;{% endif %}">
+          <div class="gift-field">
+            <label for="GiftRibbonMsg">{% if is_ar %}رسالة الشريط (اختياري){% else %}Ribbon message (optional){% endif %}</label>
+            <textarea 
+              id="GiftRibbonMsg" 
+              class="gift-input" 
+              rows="2" 
+              maxlength="50" 
+              placeholder="{% if is_ar %}مثال: عيد ميلاد سعيد{% else %}e.g., Happy Birthday{% endif %}"
+            >{{ cart.attributes['Ribbon message'] | escape }}</textarea>
+            <div class="gift-counter"><span id="RibbonMsgCount">0</span>/50</div>
+            <p class="gift-hint" style="margin-top:0.5rem;">
+              {% if is_ar %}رسالة قصيرة ستُطبع على الشريط{% else %}Short message to be printed on the ribbon{% endif %}
+            </p>
+          </div>
+        </div>
+
+        <!-- Sender + rich text editor (shown if Gift Card checked) -->
+        <div class="gift-editor" id="GiftEditorWrap" style="{% if cart.attributes['Gift card'] == 'Yes' or cart.attributes['Card message'] != blank %}{% else %}display:none;{% endif %}">
+          <!-- Sender name -->
+          <div class="gift-field">
+            <label for="GiftSender">{% if is_ar %}اسم المُرسل{% else %}Sender name{% endif %}</label>
+            <input id="GiftSender" class="gift-input" type="text" maxlength="100" value="{{ cart.attributes['Sender name'] | escape }}">
+            <div class="gift-counter"><span id="SenderCount">0</span>/100</div>
+          </div>
+
+          <!-- Toolbar -->
+          <div class="gift-toolbar" style="margin-top:1rem;">
+            <button type="button" data-cmd="bold" aria-pressed="false"><strong>B</strong></button>
+            <button type="button" data-cmd="italic" aria-pressed="false"><em>I</em></button>
+            <button type="button" data-cmd="underline" aria-pressed="false"><u>U</u></button>
+
+            {%- assign card_font_size = cart.attributes['Card message size'] -%}
+            <select id="GiftFontSize" aria-label="{% if is_ar %}حجم الخط{% else %}Font size{% endif %}">
+              <option value="normal"{% if card_font_size == blank or card_font_size == 'normal' %} selected{% endif %}>{% if is_ar %}الحجم عادي{% else %}Size: Normal{% endif %}</option>
+              <option value="large"{% if card_font_size == 'large' %} selected{% endif %}>{% if is_ar %}كبير{% else %}Large{% endif %}</option>
+            </select>
+
+            <!-- Color swatches -->
+            <div class="gift-color-wrap">
+              <label style="display:flex;align-items:center;gap:.4rem;">
+                <span>{% if is_ar %}اللون{% else %}Color{% endif %}</span>
+                <button type="button" id="GiftColorBtn" class="gift-color-btn" aria-haspopup="true" aria-expanded="false">
+                  <span class="gift-color-swatch" id="GiftColorSwatch" style="--sw:#333333"></span>
+                </button>
+              </label>
+              <div class="gift-color-popover" id="GiftColorPop" hidden>
+                <div class="gift-color-grid"></div>
+              </div>
+            </div>
+
+            <!-- Emoji picker -->
+            <div class="gift-emoji-wrap">
+              <button type="button" class="gift-emoji-btn" id="GiftEmojiBtn" title="{% if is_ar %}إدراج إيموجي{% else %}Insert emoji{% endif %}">😊</button>
+              <div class="gift-emoji-popover" id="GiftEmojiPop" hidden>
+                <div class="gift-emoji-grid"></div>
+              </div>
+            </div>
+          </div> <!-- /gift-toolbar -->
+
+          <!-- Rich text area -->
+          <div
+            id="GiftEditable"
+            class="gift-editable"
+            contenteditable="true"
+            data-placeholder="{% if is_ar %}اكتب رسالتك هنا…{% else %}Write your message here…{% endif %}"
+            aria-label="{% if is_ar %}اكتب رسالتك هنا{% else %}Write your message here{% endif %}"
+          >{{ cart.attributes['Card message HTML'] }}</div>
+
+          <!-- Message counter -->
+          <div class="gift-counter"><span id="MsgCount">0</span>/150</div>
+
+          <div class="gift-hint">
+            {% if is_ar %}أضف إلى هديتك لمسة من الأناقة والفخامة! {% else %}Max 150 characters. You can format the text (bold/italic/underline) and adjust size & color.{% endif %}
+          </div>
+        </div>
+      </div>
+
+      <div class="gift-modal__footer">
+        <button class="gift-btn gift-btn--danger" id="GiftClearBtn">{% if is_ar %}إزالة الخيارات{% else %}Remove options{% endif %}</button>
+        <div style="display:flex; gap:.5rem;">
+          <button class="gift-btn" id="GiftCancelBtn">{% if is_ar %}إلغاء{% else %}Cancel{% endif %}</button>
+          <button class="gift-btn gift-btn--primary" id="GiftSaveBtn">{% if is_ar %}حفظ{% else %}Save{% endif %}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endif -%}

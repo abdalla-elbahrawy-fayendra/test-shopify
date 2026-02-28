@@ -1,0 +1,157 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "rich_text_UVRXbM": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_rmg6cg": {
+          "type": "heading",
+          "settings": {
+            "heading": "Payment options",
+            "heading_size": "h1"
+          }
+        },
+        "text_BMYDCb": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Fayendra offers a variety of payment choices, allowing you to select the way that best suits your needs when purchasing your perfect piece of jewelry.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_rmg6cg",
+        "text_BMYDCb"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "tab_section_FrVTcr": {
+      "type": "tab-section",
+      "blocks": {
+        "tab_block_UNiCwx": {
+          "type": "tab_block",
+          "settings": {
+            "tab_icon": "shopify://shop_images/system-regular-38-credit-card_1_00ef0be2-2b46-4189-9fb7-f292ffacca2a.svg",
+            "heading": "credit card",
+            "row_content": "<p>Fayendra accepts major credit cards, including Visa and MasterCard, to ensure a secure and seamless transaction experience. Your payment information is encrypted to ensure a secure and convenient checkout process.</p>"
+          }
+        },
+        "tab_block_FCLkxz": {
+          "type": "tab_block",
+          "settings": {
+            "tab_icon": "shopify://shop_images/mada.svg",
+            "heading": "Mada",
+            "row_content": "<p>Fayendra accepts Mada, the national payment scheme of Saudi Arabia. Your payment information is encrypted to ensure a secure and convenient checkout process.<br/><br/></p>"
+          }
+        },
+        "tab_block_gDJz4w": {
+          "type": "tab_block",
+          "settings": {
+            "tab_icon": "shopify://shop_images/TabbyNew-tabby.png",
+            "heading": "tabby",
+            "row_content": "<p>Fayendra accepts tabby. Select Tabby as your payment method at checkout to pay over 4 or 6 equal monthly payment plans with 0% interest and no fees for eligible items.<br/><br/></p>"
+          }
+        },
+        "tab_block_yEUXLB": {
+          "type": "tab_block",
+          "settings": {
+            "tab_icon": "shopify://shop_images/Tamara_Logo.webp",
+            "heading": "tamara",
+            "row_content": "<p>Fayendra accepts tamara. Shop your favorite stores and checkout with Tamara.<br/>Pay a fraction of your total now and the rest over time - no late fees, Sharia compliant!<br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "tab_block_UNiCwx",
+        "tab_block_FCLkxz",
+        "tab_block_gDJz4w",
+        "tab_block_yEUXLB"
+      ],
+      "settings": {
+        "className": "payment-options",
+        "color_scheme": "",
+        "text_center": true,
+        "heading_hide": true,
+        "custom_width": true,
+        "page_width_narrow": 950,
+        "padding_top": 28,
+        "padding_bottom": 100
+      }
+    },
+    "icons_with_text_9FaQUk": {
+      "type": "icons-with-text",
+      "blocks": {
+        "column_tRx64G": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/system-regular-38-credit-card_1.svg",
+            "title": "Credit Cared",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_NMcAdM": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/mada.svg",
+            "title": "mada",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_tRx64G",
+        "column_NMcAdM"
+      ],
+      "disabled": true,
+      "settings": {
+        "className": "",
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 2,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main",
+    "rich_text_UVRXbM",
+    "tab_section_FrVTcr",
+    "icons_with_text_9FaQUk"
+  ]
+}

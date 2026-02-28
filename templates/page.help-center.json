@@ -1,0 +1,181 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "rich_text_dnxda8": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_BArVCW": {
+          "type": "heading",
+          "settings": {
+            "heading": "{{ page.title }}",
+            "heading_size": "h0"
+          }
+        }
+      },
+      "block_order": [
+        "heading_BArVCW"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "custom_liquid_eVMC84": {
+      "type": "custom-liquid",
+      "custom_css": [],
+      "settings": {
+        "custom_liquid": "<div class=\"help-search\">\n<input type=\"text\" id=\"content-search\" placeholder=\"{{ 'templates.search.message' | t }}\" />\n<button id=\"search-button\" class=\"button button--primary\">{{ 'templates.search.search' | t }}</button>\n<div id=\"search-results\"></div>\n</div>",
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "tab_section_GnGcB8": {
+      "type": "tab-section",
+      "blocks": {
+        "tab_block_KLg3h6": {
+          "type": "tab_block",
+          "settings": {
+            "tab_icon": "shopify://shop_images/system-regular-38-credit-card_1.svg",
+            "heading": "Orders & Payments",
+            "row_content": "<h3>How do I place my order?</h3><p>You can quickly place an order by browsing our collections, adding products to your cart, and then checking out. To finalize your order, simply follow the instructions on-screen.</p><h3>Can I see my order without registering?</h3><p>Yes, you may see your order without having to form an account. Simply utilize the order tracking URL from your confirmation email.</p><h3>Which payment options do you accept?</h3><p>We accept a variety of payment methods, including credit and debit cards, PayPal, Apple Pay, and other safe choices.</p><h3>Is my payment information secure?</h3><p>Absolutely. We employ modern encryption technologies to keep your financial information safe and secure.</p>"
+          }
+        },
+        "tab_block_NezXRG": {
+          "type": "tab_block",
+          "settings": {
+            "tab_icon": "shopify://shop_images/wired-outline-497-truck-delivery_2.svg",
+            "heading": "Shipping & Delivery",
+            "row_content": "<h3>How long will it take me to receive my order?</h3><p>Delivery times vary according to your location and shipment method. Orders are typically delivered within three to ten business days.</p><p>Please refer to our <a href=\"/pages/shipping-policy\" title=\"Shipping Policy\">Shipping Policy</a></p><h3>Do you provide worldwide shipping?</h3><p>Yes, we can ship internationally. Please see our shipping policy for more information on destinations, charges, and delivery timeframes.</p><h3>How do I track my order?</h3><p>Following the shipping of your order, you will receive an email with a tracking number that you can use to trace the status of your delivery.</p>"
+          }
+        },
+        "tab_block_q4BMfe": {
+          "type": "tab_block",
+          "settings": {
+            "tab_icon": "shopify://shop_images/system-regular-18-autorenew_1_1.svg",
+            "heading": "Returns & Exchanges",
+            "row_content": "<h3>What is your returns policy?</h3><p>We provide a hassle-free returns policy. You can return any item within 7 days of purchase, as long as it is in its original condition and packing.</p><p>Please refer to our <a href=\"/pages/delivery-and-return-policy\" title=\"Returns and Exchange Policy\">Return and Exchange Policy</a></p><h3>How do I make a refund or exchange?</h3><p>To initiate a return or exchange, please contact our customer service staff and provide your order number and reason for the return. We will guide you through the procedure.</p><h3>Is there anything that cannot be returned?</h3><p>Customized and personalized items are non-refundable. Please examine our return policy for more information.</p>"
+          }
+        },
+        "tab_block_8KwmLF": {
+          "type": "tab_block",
+          "settings": {
+            "tab_icon": "shopify://shop_images/necklace-gem-svgrepo-com.png",
+            "heading": "products",
+            "row_content": "<h3><br/>Who designs and manufactures Fayendra products?</h3><p>Fayendra jewelry is designed by the brand owner and the design teams he leads. It is manufactured in collaboration with a selection of the world’s finest artisans, with a strict commitment to the highest standards of quality and precision, to deliver pieces that combine authenticity and excellence, and meet the aspirations of refined taste.</p><h3>Do you provide personalized jewelry design?</h3><p>Yes, we provide bespoke jewelry design services. Please contact us to discuss your ideas and bring your vision to reality.</p><h3>What are the materials used in your jewelry?</h3><p>Our jewelry is crafted from the best materials, such as silver, and precious gemstones, ensuring both quality and elegance.</p>"
+          }
+        },
+        "tab_block_M4jAjB": {
+          "type": "tab_block",
+          "settings": {
+            "tab_icon": "shopify://shop_images/Clip_path_group.svg",
+            "heading": "Account & Support",
+            "row_content": "<h3>Do I have to create an account to shop?</h3><p>No, you are welcome to shop as a guest. However, creating an account allows you to track orders, store favorites, and enjoy a speedier checkout process.</p><h3>How do I contact customer service?</h3><p>You can contact our customer care team by email, phone, or live chat. For additional information, please visit our <a href=\"/pages/contact-us-main\" title=\"Contact us main\">Contact Us</a> page.</p><h3>How can I update my account information?</h3><p>If you already have an account, simply log in and visit the Account Settings page to update your personal information.</p>"
+          }
+        },
+        "tab_block_pTQGz7": {
+          "type": "tab_block",
+          "settings": {
+            "tab_icon": "shopify://shop_images/system-regular-146-label_2_1.svg",
+            "heading": "Promotions & Discounts",
+            "row_content": "<h3>Do you provide any promos or discounts?</h3><p>Yes, we routinely provide deals and discounts. Sign up for our newsletter to receive updates on the hottest deals and exclusive offers.</p><h3>How can I use a promotion code?</h3><p>To apply the discount to your order, enter your promo code into the corresponding section at checkout.</p><h3>Can I use several promo codes on the same order?</h3><p>Only one promotional code may be used per order. Please see our terms and conditions for more information.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "tab_block_KLg3h6",
+        "tab_block_NezXRG",
+        "tab_block_q4BMfe",
+        "tab_block_8KwmLF",
+        "tab_block_M4jAjB",
+        "tab_block_pTQGz7"
+      ],
+      "settings": {
+        "className": "",
+        "color_scheme": "scheme-1",
+        "text_center": false,
+        "heading_hide": false,
+        "custom_width": false,
+        "page_width_narrow": 600,
+        "padding_top": 0,
+        "padding_bottom": 76
+      }
+    },
+    "quick_link_CgLBtn": {
+      "type": "quick-link",
+      "blocks": {
+        "link_fXz9Xr": {
+          "type": "link",
+          "settings": {
+            "link_label": "Delivery & returns",
+            "link": "shopify://pages/delivery-and-return-policy"
+          }
+        },
+        "link_DQVmyB": {
+          "type": "link",
+          "settings": {
+            "link_label": "Contact Us",
+            "link": "shopify://pages/contact-us-main"
+          }
+        },
+        "link_feCif4": {
+          "type": "link",
+          "disabled": true,
+          "settings": {
+            "link_label": "Track your order",
+            "link": "#"
+          }
+        },
+        "link_wP8LWC": {
+          "type": "link",
+          "disabled": true,
+          "settings": {
+            "link_label": "My account",
+            "link": "#"
+          }
+        }
+      },
+      "block_order": [
+        "link_fXz9Xr",
+        "link_DQVmyB",
+        "link_feCif4",
+        "link_wP8LWC"
+      ],
+      "settings": {
+        "title": "quick links",
+        "heading_size": "h1",
+        "columns_desktop": 2,
+        "column_alignment": "left",
+        "padding_top": 16,
+        "padding_bottom": 80
+      }
+    }
+  },
+  "order": [
+    "main",
+    "rich_text_dnxda8",
+    "custom_liquid_eVMC84",
+    "tab_section_GnGcB8",
+    "quick_link_CgLBtn"
+  ]
+}

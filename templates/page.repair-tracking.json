@@ -1,0 +1,43 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 64,
+        "padding_bottom": 72
+      }
+    },
+    "repair_tracking_pdWi9Y": {
+      "type": "repair-tracking",
+      "name": "Repair Order Tracking",
+      "settings": {
+        "api_url": "https://your-odoo-api-endpoint.com/repair_order_track",
+        "api_key": "YOUR_API_KEY",
+        "support_email": "support@fayendra.com",
+        "support_phone": "+1 (800) 123-4567"
+      }
+    },
+    "devider_q7PkUh": {
+      "type": "devider",
+      "name": "Devider",
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main",
+    "repair_tracking_pdWi9Y",
+    "devider_q7PkUh"
+  ]
+}

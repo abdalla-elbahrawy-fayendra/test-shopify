@@ -1,0 +1,24 @@
+<style>
+  .whatsapp-float {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 60px;
+    height: 60px;
+    z-index: 1000;
+  }
+  .whatsapp-float img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 50%;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+  }
+</style>
+
+<a href="https://wa.me/966536015489?text=مرحبًا%20أود%20الاستفسار%20حول%20منتجاتكم"
+   class="whatsapp-float"
+   target="_blank"
+   aria-label="Chat on WhatsApp">
+  <img src="{{ 'whatsapp.gif' | asset_url }}" alt="WhatsApp chat" />
+</a>

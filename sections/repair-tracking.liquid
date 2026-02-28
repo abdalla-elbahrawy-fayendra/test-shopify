@@ -1,0 +1,297 @@
+{% schema %}
+{
+  "name": "Repair Order Tracking",
+  "tag": "section",
+  "class": "repair-tracking",
+  "settings": [
+    {
+      "type": "text",
+      "id": "api_url",
+      "label": "API URL",
+      "default": "https://your-odoo-api-endpoint.com/repair_order_track"
+    },
+    {
+      "type": "text",
+      "id": "api_key",
+      "label": "API Key (Optional)",
+      "default": "YOUR_API_KEY"
+    },
+    {
+      "type": "text",
+      "id": "support_email",
+      "label": "Support Email",
+      "default": "support@fayendra.com"
+    },
+    {
+      "type": "text",
+      "id": "support_phone",
+      "label": "Support Phone",
+      "default": "+1 (800) 123-4567"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Repair Order Tracking"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+  .repair-form {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  .repair-form label {
+    font-weight: bold;
+  }
+  .repair-form input, .repair-form select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .repair-form button {
+    background: #29504D;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+  }
+  .repair-form button:hover {
+    background: #499683;
+  }
+  .repair-form button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+  #loadingIndicator {
+    display: none;
+    text-align: center;
+    margin-top: 15px;
+  }
+  .repair-results {
+    max-width: 800px;
+    margin: auto;
+    margin-top: 20px;
+  }
+  .repair-results table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  .repair-results th, .repair-results td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  .repair-results th {
+    background: #0073aa;
+    color: white;
+  }
+  .support-message {
+    margin-top: 10px;
+    padding: 10px;
+    background: #ffe5e5;
+    border-left: 5px solid red;
+  }
+
+  /* added */
+  .repair-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+  border: 1px solid #ccc;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.repair-table th,
+.repair-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.repair-table th[colspan="2"] {
+  background-color: #e0e0e0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+}
+
+.repair-table td:first-child {
+  font-weight: bold;
+  background-color: #f7f7f7;
+  color: #222;
+  width: 30%;
+  text-align: center;
+}
+
+.inner-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.inner-table th,
+.inner-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.inner-table th {
+  background-color: #0073aa;
+  color: white;
+  font-weight: 600;
+}
+.repair-form h2 {
+  margin-bottom: 40px;
+}
+</style>
+
+<form id="repairTrackingForm" class="repair-form">
+    <h2 style="text-align:center;">{{ 'repair_tracking.track_order' | t }}</h2>
+
+    <label for="tracking_number">{{ 'repair_tracking.tracking_number' | t }}</label>
+    <input type="text" id="tracking_number" name="tracking_number" placeholder="{{ 'repair_tracking.placeholder_tracking_number' | t }}" required>
+
+    <button type="submit" id="trackButton">{{ 'repair_tracking.track_button' | t }}</button>
+
+    <div id="loadingIndicator">
+        <p>{{ 'accessibility.loading' | t }}</p>
+    </div>
+</form>
+
+<div id="repairResults" class="repair-results"></div>
+
+<div id="messageOutput" style="margin-top: 20px; font-weight: bold;"></div>
+
+<span id="loading-text" style="display:none;">{{ 'accessibility.loading' | t }}</span>
+<span id="enter-tracking-msg" style="display:none;">{{ 'repair_tracking.enter_tracking_number' | t }}</span>
+<span id="no-results-text" style="display:none;">{{ 'repair_tracking.no_results' | t }}</span>
+<span id="no_orders_found" style="display:none;">{{ 'repair_tracking.no_orders_found' | t }}</span>
+<span id="generic_error" style="display:none;">{{ 'repair_tracking.generic_error' | t }}</span>
+<script>
+  document.getElementById("repairTrackingForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Stop form submission
+
+    let trackingNumber = document.getElementById("tracking_number").value.trim();
+    // let sortBy = document.getElementById("sort_by").value; // optional
+    let resultsDiv = document.getElementById("repairResults");
+    let loadingIndicator = document.getElementById("loadingIndicator");
+    let trackButton = document.getElementById("trackButton");
+
+    if (trackingNumber === "") {
+        alert(document.getElementById("enter-tracking-msg").innerText);
+        return;
+    }
+
+    // Show loading message
+    resultsDiv.innerHTML = "";
+    
+    loadingIndicator.innerText = document.getElementById("loading-text").innerText;
+    loadingIndicator.style.display = "block";
+    trackButton.disabled = true;
+
+    let apiUrl = "{{ settings.repair_api_url }}";
+    let apiKey = "{{ settings.repair_api_key }}";
+
+    // Send POST request to Odoo
+    fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": apiKey ? "Bearer " + apiKey : ""
+      },
+      body: JSON.stringify({
+        tracking_number: trackingNumber
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      trackButton.disabled = false;
+      loadingIndicator.style.display = "none";
+    
+      if (data.result.status === "success" && Array.isArray(data.result.results)) {
+        const results = data.result.results;
+    
+        if (results.length === 0) {
+          resultsDiv.innerHTML = "<p>" + document.getElementById("no-results-text").innerText + "</p>";
+          return;
+        }
+    
+        let html = "";
+    
+        results.forEach(order => {
+          html += `
+            <table class="repair-table">
+              <thead>
+                <tr>
+                  <th colspan="2" style="text-align:center;">{{ 'repair_tracking.repair_id' | t }} : ${order.repair_name}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>{{ 'repair_tracking.status' | t }}</td><td>${order.repair_status}</td></tr>
+                <tr><td>{{ 'repair_tracking.branch' | t }}</td><td>${order.branch_name}</td></tr>
+                <tr><td>{{ 'repair_tracking.order_date' | t }}</td><td>${order.order_date}</td></tr>
+                <tr><td>{{ 'repair_tracking.delivery_date' | t }}</td><td>${order.repair_delivery_date}</td></tr>
+                <tr><td>{{ 'repair_tracking.pieces_received' | t }}</td><td>${order.no_pieces_received}</td></tr>
+                <tr>
+                  <td>{{ 'repair_tracking.repair_services' | t }}</td>
+                  <td>
+                    <table class="inner-table">
+                      <thead>
+                        <tr>
+                          <th>{{ 'repair_tracking.service' | t }}</th>
+                          <th>{{ 'repair_tracking.size' | t }}</th>
+                          <th>{{ 'repair_tracking.notes' | t }}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        ${order.repair_line_ids.map(line => `
+                          <tr>
+                            <td>${line.name || "-"}</td>
+                            <td>${line.current_size && line.required_size ? `${line.current_size} → ${line.required_size}` : "-"}</td>
+                            <td>${line.notes || "-"}</td>
+                          </tr>
+                        `).join('')}
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table><br>
+          `;
+        });
+    
+        resultsDiv.innerHTML = html;
+      } else {
+        const fallbackMessage = document.getElementById("no_orders_found").innerText;
+        resultsDiv.innerHTML = `<p style="color: red; text-align: center;">${data.message || fallbackMessage}</p>`;
+      }
+    })
+    .catch(error => {
+        loadingIndicator.style.display = "none";
+        trackButton.disabled = false;
+        const fallbackMessage = document.getElementById("generic_error").innerText;
+        resultsDiv.innerHTML = `<p style="color: red; text-align: center;">${data.message || fallbackMessage}</p>`;
+    });
+  });
+</script>
+
+
+
+
+

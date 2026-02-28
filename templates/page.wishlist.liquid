@@ -1,0 +1,108 @@
+<div id="wishlist-container" style="max-width: 1200px; margin: 0 auto; padding: 20px;">
+  <h1 style="text-align: center;">
+    {% if request.locale.iso_code == 'ar' %} قائمة الأمنيات {% else %} My Wishlist {% endif %}
+  </h1>
+
+  <div
+    id="wishlist-grid"
+    style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; margin-top: 30px;"
+  ></div>
+
+  <p id="empty-wishlist-message" style="text-align:center; display:none; margin-top:30px;">
+    {% if request.locale.iso_code == 'ar' %}
+      قائمة الأمنيات فارغة.
+    {% else %}
+      Your wishlist is empty.
+    {% endif %}
+  </p>
+
+  <div style="text-align: center; margin-top: 30px;">
+    <button
+      id="clear-wishlist"
+      style="display:none; padding:10px 20px; background:#000; color:#fff; border:none; border-radius:5px; cursor:pointer;"
+    >
+      {% if request.locale.iso_code == 'ar' %}
+        مسح القائمة
+      {% else %}
+        Clear Wishlist
+      {% endif %}
+    </button>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    const wishlistGrid = document.getElementById('wishlist-grid');
+    const emptyMessage = document.getElementById('empty-wishlist-message');
+    const clearButton = document.getElementById('clear-wishlist');
+
+    function refreshWishlist() {
+        wishlistGrid.innerHTML = '';
+        const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+        if (wishlist.length === 0) {
+            emptyMessage.style.display = 'block';
+            clearButton.style.display = 'none';
+        } else {
+            clearButton.style.display = 'inline-block';
+            wishlist.forEach(function(product, index) {
+                const card = document.createElement('div');
+                card.style.border = '1px solid #eee';
+                card.style.borderRadius = '8px';
+                card.style.padding = '10px';
+                card.style.textAlign = 'center';
+                card.style.backgroundColor = '#fff';
+                card.style.boxShadow = '0 2px 5px rgba(0,0,0,0.05)';
+                card.innerHTML = `
+                    <a href="/products/${product.handle}" style="text-decoration:none; color:inherit;">
+                        <img src="${product.image}" alt="${product.title}" style="width:100%; height:auto; border-radius:6px; margin-bottom:10px;">
+                        <h3 style="font-size:16px; font-weight:600; min-height:40px;">${product.title}</h3>
+                    </a>
+                    <div style="margin-top:10px;">
+                        <button onclick="removeFromWishlist(${index})" style="margin-top:8px; background:#e00; color:#fff; border:none; padding:6px 10px; border-radius:4px; cursor:pointer;">
+                          {% if request.locale.iso_code == 'ar' %}
+                            إزالة
+                          {% else %}
+                            Remove
+                          {% endif %}
+                        </button>
+                    </div>
+                `;
+                wishlistGrid.appendChild(card);
+            });
+        }
+    }
+
+    window.removeFromWishlist = function(index) {
+        const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+        const wishlistGrid = document.getElementById('wishlist-grid');
+        const item = wishlistGrid.children[index];
+
+        if (item) {
+            item.style.transition = "all 0.4s ease";
+            item.style.opacity = "0";
+            item.style.transform = "scale(0.8)";
+            setTimeout(function() {
+                wishlist.splice(index, 1);
+                localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                refreshWishlist();
+                updateWishlistBadge(); // ✅ Call here too
+            }, 400);
+        } else {
+            wishlist.splice(index, 1);
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            refreshWishlist();
+            updateWishlistBadge(); // ✅ Call here too
+        }
+    }
+
+    clearButton.addEventListener('click', function() {
+        localStorage.removeItem('wishlist');
+        refreshWishlist();
+        updateWishlistBadge(); // ✅ Call here too
+    });
+
+    refreshWishlist();
+});
+</script>

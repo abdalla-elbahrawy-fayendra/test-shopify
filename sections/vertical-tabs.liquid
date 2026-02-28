@@ -1,0 +1,140 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  <div class="page-width page-width--narrow ">
+    <div class="vertical-tab-block">
+      <div class="tabs">
+        {%- for block in section.blocks -%}
+          <button
+            class="tab-button {% if forloop.first %}active{% endif %}"
+            onclick="openTab('{{ block.settings.heading | downcase | replace: ' ', '' | replace: '-', '' | replace: '_', '' | replace: ',', '' | replace: '.', '' | replace: '&', '' }}')"
+          >
+            <span>{{ block.settings.heading | escape }}</span>
+          </button>
+        {%- endfor -%}
+      </div>
+      <div class="tab-contents">
+        {%- for block in section.blocks -%}
+          <div
+            id="{{ block.settings.heading | downcase | replace: ' ', '' | replace: '-', '' | replace: '_', '' | replace: ',', '' | replace: '.', '' | replace: '&', '' }}"
+            class="tab-content {% if forloop.first %}active{% endif %}"
+          >
+            {{ block.settings.row_content }}
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    function openTab(tabId) {
+  // Remove 'active' class from all tab contents
+  const contents = document.querySelectorAll('.tab-content');
+  contents.forEach(content => content.classList.remove('active'));
+
+  // Add 'active' class to the selected tab content
+  document.getElementById(tabId).classList.add('active');
+
+  // Remove 'active' class from all tab buttons
+  const buttons = document.querySelectorAll('.tab-button');
+  buttons.forEach(button => button.classList.remove('active'));
+
+  // Add 'active' class to the clicked button
+  const currentButton = document.querySelector(`[onclick="openTab('${tabId}')"]`);
+  currentButton.classList.add('active');
+}
+</script>
+
+{% schema %}
+{
+  "name": "Vertical Tab Section",
+  "tag": "section",
+  "class": "section v-tabing-section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab_block",
+      "name": "Tab Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Tab",
+          "label": "Tab",
+        },
+        {
+          "type": "richtext",
+          "id": "row_content",
+          "label": "t:sections.collapsible_content.blocks.collapsible_row.settings.row_content.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vertical Tab Section",
+      "blocks": [
+        {
+          "type": "tab_block"
+        },
+        {
+          "type": "tab_block"
+        },
+        {
+          "type": "tab_block"
+        },
+        {
+          "type": "tab_block"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

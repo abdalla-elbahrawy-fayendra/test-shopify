@@ -1,0 +1,103 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "rich_text_AJNhHN": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_t9PUPW": {
+          "type": "heading",
+          "settings": {
+            "heading": "In a world where beauty and elegance reign supreme, FAYENDRA dares to explore beyond the ordinary.",
+            "heading_size": "h1"
+          }
+        },
+        "text_63P9UN": {
+          "type": "text",
+          "settings": {
+            "text": "<p>From the hidden treasures of the earth to the brilliance of human craftsmanship, we transform nature’s rarest gifts into timeless works of art. Each piece of FAYENDRA jewellery is more than an accessory — it is a story of heritage, passion, and artistry, designed to capture the hearts of women and men across generations.</p><p>Our extraordinary silver creations, studded with sparkling stones, are crafted to transcend trends and time. They are meant to be cherished, passed from ancestors to fathers, and from fathers to sons — living testaments to love, tradition, and enduring beauty.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_t9PUPW",
+        "text_63P9UN"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "multirow_EbKpy9": {
+      "type": "multirow",
+      "blocks": {
+        "row_iwUE63": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/History.jpg",
+            "caption": "",
+            "heading": " <em><strong>History</strong></em>",
+            "text": "<p>The idea of ​​the brand arose more than 100 years ago by Mr. Hussein Fayed - who from his home FAYENDRA was established and turned it into an incomparable imprint in the world of fashion and luxury.</p><p>To complement Mr. Hussein Fayed's path, his son, Mr. Orabi Fayed, established his first store in 1935 in Beirut.</p><p>Then the passion for silver was passed on to the new generation, who set about collecting their ancestral legacy to establish their empire in the silver world, leaning on a huge heritage and a reliable name in the world of silver, creating the most amazing and finest designs to be the first Arab company to have its international name.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_tjVp8z": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/founder.jpg",
+            "caption": "",
+            "heading": "<em><strong>Founder</strong></em>",
+            "text": "<p>The new generation of FAYENDRA has a greater vision and goals for the future of FAYENDRA and seeks to spread the brand in the whole world to be one of the international names in the world of beauty and elegance.</p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "row_iwUE63",
+        "row_tjVp8z"
+      ],
+      "name": "t:sections.multirow.presets.name",
+      "settings": {
+        "image_height": "medium",
+        "desktop_image_width": "medium",
+        "heading_size": "h1",
+        "text_style": "body",
+        "button_style": "secondary",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "image_layout": "alternate-left",
+        "section_color_scheme": "",
+        "row_color_scheme": "",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main",
+    "rich_text_AJNhHN",
+    "multirow_EbKpy9"
+  ]
+}

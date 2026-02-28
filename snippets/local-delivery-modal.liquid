@@ -1,0 +1,88 @@
+<div class="ld-modal-overlay" data-ld-modal>
+  <div class="ld-modal-window">
+    <button class="ld-modal-close" data-ld-modal-close aria-label="Close">✕</button>
+
+    <div class="ld-modal-header">
+      {% if request.locale.iso_code contains 'ar' %}
+        <span dir="rtl">خدمة التوصيل داخل الرياض</span>
+      {% else %}
+        <span>Riyadh Local Delivery</span>
+      {% endif %}
+    </div>
+
+    <div class="ld-modal-content">
+      {% if request.locale.iso_code contains 'ar' %}
+        <div class="ld-modal-section">
+          <h4 class="ar-title" dir="rtl">وقت التوصيل</h4>
+          <p dir="rtl">
+            توصيل في نفس اليوم للطلبات المؤكدة قبل الساعة 12 ظهرًا،<br>
+            والطلبات بعد هذا الوقت تُسلَّم في اليوم التالي.
+          </p>
+        </div>
+
+
+        <div class="ld-modal-section">
+          <h4 class="ar-title" dir="rtl">مناطق الخدمة</h4>
+          <p dir="rtl">
+            التوصيل متاح لجميع مناطق الرياض التي تبدأ رموزها البريدية بـ
+            <strong>11xxx</strong>.
+          </p>
+        </div>
+
+        <div class="ld-modal-section">
+          <h4 class="ar-title" dir="rtl">التكلفة</h4>
+          <p dir="rtl">قد تختلف رسوم التوصيل حسب المنطقة داخل الرياض.</p>
+        </div>
+      {% else %}
+        <div class="ld-modal-section">
+          <h4>Delivery time</h4>
+          <p>
+            Same-day delivery for orders confirmed before 12:00 noon.<br>
+            Orders placed after 12:00 noon are delivered the next day.
+          </p>
+        </div>
+
+
+        <div class="ld-modal-section">
+          <h4>Service area</h4>
+          <p>
+            Available for all Riyadh addresses within postcode ranges that begin
+            with <strong>11xxx</strong>.
+          </p>
+        </div>
+
+        <div class="ld-modal-section">
+          <h4>Cost</h4>
+          <p>Delivery fees may vary depending on the specific location.</p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const openBtn = document.querySelector("[data-ld-modal-open]");
+  const modal = document.querySelector("[data-ld-modal]");
+  const closeBtn = document.querySelector("[data-ld-modal-close]");
+
+  if (!openBtn || !modal || !closeBtn) return;
+
+  openBtn.addEventListener("click", () => {
+    modal.classList.add("active");
+    document.body.classList.add("ld-no-scroll");
+  });
+
+  closeBtn.addEventListener("click", () => {
+    modal.classList.remove("active");
+    document.body.classList.remove("ld-no-scroll");
+  });
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.classList.remove("active");
+      document.body.classList.remove("ld-no-scroll");
+    }
+  });
+});
+</script>

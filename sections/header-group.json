@@ -1,0 +1,187 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement-bar-0": {
+          "type": "announcement",
+          "settings": {
+            "text": "30-80% OFF ON SELECTED ITEMS",
+            "shop": "SHOP NOW",
+            "link": "shopify://collections/sales"
+          }
+        }
+      },
+      "block_order": [
+        "announcement-bar-0"
+      ],
+      "settings": {
+        "color_scheme": "scheme-3",
+        "show_line_separator": true,
+        "show_social": true,
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "enable_country_selector": false,
+        "enable_language_selector": false
+      }
+    },
+    "header": {
+      "type": "header",
+      "blocks": {
+        "menu_image_HVargh": {
+          "type": "menu-image",
+          "settings": {
+            "link_name": "Women's Jewelry",
+            "link_image": "shopify://shop_images/gifts_4f818719-19f1-41da-8c07-0ea4d5fa5bc4.jpg",
+            "link_title": "",
+            "link_url": "shopify://collections/all-products"
+          }
+        },
+        "menu_image_9efEYQ": {
+          "type": "menu-image",
+          "settings": {
+            "link_name": "Women's Jewelry",
+            "link_image": "shopify://shop_images/Featured_collections.webp",
+            "link_title": "Featured collections",
+            "link_url": "shopify://collections/womens-jewelry"
+          }
+        },
+        "menu_image_cKdqDj": {
+          "type": "menu-image",
+          "settings": {
+            "link_name": "Women's Jewelry",
+            "link_image": "shopify://shop_images/mega-menu-154171-womensjewelry-02-252620651_640x_f5a18530-cf00-4851-9590-7b78d3c98dca.webp",
+            "link_title": "Watches",
+            "link_url": "shopify://collections/womens-jewelry"
+          }
+        },
+        "menu_image_wJmgkK": {
+          "type": "menu-image",
+          "settings": {
+            "link_name": "Men's Jewelry",
+            "link_image": "shopify://shop_images/mega-menu-154171-main-1484029782_640x_f0371842-30b4-4563-8d45-4bb3db3af116.webp",
+            "link_title": "",
+            "link_url": "shopify://collections/mens-jewelry"
+          }
+        },
+        "menu_image_wQRMBg": {
+          "type": "menu-image",
+          "settings": {
+            "link_name": "Men's Jewelry",
+            "link_image": "shopify://shop_images/men_b3a2b455-5b13-412e-888a-883c3a10c435.jpg",
+            "link_title": "Watches",
+            "link_url": "shopify://collections/mens-jewelry"
+          }
+        },
+        "menu_image_Ncd3F7": {
+          "type": "menu-image",
+          "settings": {
+            "link_name": "Men's Jewelry",
+            "link_image": "shopify://shop_images/mega-menu-154171-2-236729632_640x_c3ae6d25-f17b-4805-9976-cd7cf5dfa235.webp",
+            "link_title": "Featured collections",
+            "link_url": "shopify://collections/mens-jewelry"
+          }
+        },
+        "menu_image_xQHaeT": {
+          "type": "menu-image",
+          "settings": {
+            "link_name": "Watches",
+            "link_image": "shopify://shop_images/mega-menu-154171-womens-watches-1986791467_640x_7b8d7fef-0289-4b30-9971-f7c30ca02758.webp",
+            "link_title": "Women's Classic Watches",
+            "link_url": "shopify://collections/mens-jewelry"
+          }
+        },
+        "menu_image_daAVYW": {
+          "type": "menu-image",
+          "settings": {
+            "link_name": "Watches",
+            "link_image": "shopify://shop_images/mega-menu-154171-classicwatch-448364816_640x_3b389b85-2a8f-439b-afa1-243f328ae859.jpg",
+            "link_title": "Women's Fashion Watches",
+            "link_url": "shopify://collections/mens-jewelry"
+          }
+        },
+        "menu_image_rXLqdD": {
+          "type": "menu-image",
+          "settings": {
+            "link_name": "Watches",
+            "link_image": "shopify://shop_images/mega-menu-154171-mens-watches-1829519973_640x_caa50029-d47f-4d41-b6ab-18640dd4b627.webp",
+            "link_title": "Men's Watches",
+            "link_url": "shopify://collections/mens-jewelry"
+          }
+        },
+        "menu_image_yQxKEh": {
+          "type": "menu-image",
+          "settings": {
+            "link_name": "Gifts",
+            "link_image": "shopify://shop_images/mega-menu-154171-main-944984734_640x_28c119b2-0733-48a3-ae07-925c0c36f398.webp",
+            "link_title": "",
+            "link_url": "shopify://collections/gifts"
+          }
+        },
+        "menu_image_Eg6aDK": {
+          "type": "menu-image",
+          "settings": {
+            "link_name": "Gifts",
+            "link_image": "shopify://shop_images/mega-menu-154171-for-her-615436558_640x_b04b1cec-133e-476b-8ab1-fdc5a55b86bd.webp",
+            "link_title": "Shop for Her",
+            "link_url": "shopify://collections/womens-jewelry"
+          }
+        },
+        "menu_image_Ezm4Xe": {
+          "type": "menu-image",
+          "settings": {
+            "link_name": "Gifts",
+            "link_image": "shopify://shop_images/mega-menu-154171-for-him-1303745657_640x_e5c35f72-f7e3-4a5e-98e0-d2f6b3cb3ff3.webp",
+            "link_title": "Shop for Him",
+            "link_url": "shopify://collections/mens-jewelry"
+          }
+        }
+      },
+      "block_order": [
+        "menu_image_HVargh",
+        "menu_image_9efEYQ",
+        "menu_image_cKdqDj",
+        "menu_image_wJmgkK",
+        "menu_image_wQRMBg",
+        "menu_image_Ncd3F7",
+        "menu_image_xQHaeT",
+        "menu_image_daAVYW",
+        "menu_image_rXLqdD",
+        "menu_image_yQxKEh",
+        "menu_image_Eg6aDK",
+        "menu_image_Ezm4Xe"
+      ],
+      "settings": {
+        "logo_position": "top-center",
+        "menu": "main-menu",
+        "menu_type_desktop": "mega",
+        "sticky_header_type": "always",
+        "show_line_separator": false,
+        "color_scheme": "scheme-1",
+        "menu_color_scheme": "scheme-1",
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "enable_customer_avatar": true,
+        "mobile_logo_position": "center",
+        "margin_bottom": 0,
+        "padding_top": 36,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header"
+  ]
+}

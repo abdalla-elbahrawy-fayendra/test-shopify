@@ -1,0 +1,539 @@
+{% assign locale = request.locale.iso_code | downcase %}
+
+{{ 'return-request.css' | asset_url | stylesheet_tag }}
+
+<div
+  class="return-form-wrapper page-width section-padding"
+  dir="{% if request.locale.iso_code == 'ar' %}rtl{% else %}ltr{% endif %}"
+>
+  <div
+    class="return-form-card"
+    style="max-width: 720px; margin: auto; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); padding: 2rem;"
+  >
+    <h2 class="h2" style="margin-bottom: 1.5rem; text-align: center;">{{ 'return_form.title' | t }}</h2>
+
+    <div
+      id="return-form-success"
+      style="display:none; text-align:center; background:#e7f7ec; color:#20744a; padding:1rem; border-radius:8px; margin-bottom:1.5rem; font-weight:600;"
+    >
+      {{ 'return_form.success' | t }}
+    </div>
+
+    <form
+      id="return-request-form"
+      class="form needs-validation"
+      novalidate
+      style="display: flex; flex-direction: column; gap: 1.5rem;">
+      <div class="form-row" style="display: flex; gap: 1.25rem; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 280px;">
+          <label style="font-weight: 600; display: block; margin-bottom: 0.25rem;">
+            {{- 'return_form.order_number' | t -}}
+          </label>
+          <select
+            name="order_number"
+            required
+            style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid #ccc;"
+          >
+            <option value="">{{ 'return_form.select_order' | t }}</option>
+            {% if customer %}
+              {% for order in customer.orders %}
+                <option value="{{ order.id }}">{{ 'return_form.order_number' | t }} ({{ order.name }}) - {{ 'return_form.order_price' | t }} ({{ order.total_price | divided_by: 100.0 }}) {{ 'return_form.currency' | t }} - {{ order.billing_address.city }}</option>
+              {% endfor %}
+            {% else %}
+              <option disabled>{{ 'return_form.login_to_view_orders' | t }}</option>
+            {% endif %}
+          </select>
+          <div class="invalid-feedback" style="display:none; color: #c00; font-size: 0.85rem; margin-top: 4px;">
+            {{ 'return_form.required_message' | t }}
+          </div>
+        </div>
+      </div>
+
+      <div id="loading-overlay" style="display:none; position:relative; text-align:center; padding: 2rem 0;">
+        <div style="display:inline-block; width:50px; height:50px; border:5px solid #f3f3f3; border-top:5px solid #1e4c45; border-radius:50%; animation:spin 1s linear infinite;"></div>
+        <p style="margin-top:1rem; font-weight:600;">{{ 'accessibility.loading' | t }}</p>
+      </div>
+
+      <div id="form-content" style="display:none;">
+
+        <div id="line-items-section" class="return-items-wrapper" style="margin-top: 1rem;"></div>
+        <div
+          id="line-items-required-message"
+          class="invalid-feedback"
+          style="display:none; color: #c00; font-size: 0.85rem; margin-top: -0.5rem; margin-bottom: 0.5rem; text-align: center;">
+          {{ 'return_form.required_line_item' | t }}
+        </div>
+
+        <div class="return-shipping-message">
+          {{ 'return_form.return_shipping_message' | t }}
+          <br/>
+          {{ 'return_form.return_shipping_message_thanks' | t }}
+        </div>
+        <br/>
+  
+        <div>
+          <label class="shipping-agreement-label">
+            <input type="checkbox" name="shipping_agreement" required>
+            {{ 'return_form.shipping_agreement' | t }}
+          </label>
+          <div class="invalid-feedback" style="display:none; color: #c00; font-size: 0.85rem; margin-top: -0.5rem;">
+            {{ 'return_form.required_message' | t }}
+          </div>
+        </div>
+         <br/>
+  
+        <label style="font-weight: 600; display: block; margin-bottom: 0.25rem;">{{ 'return_form.reason' | t }}</label>
+        <select
+          name="reason"
+          required
+          style="width: 100%; padding: 0.75rem 2.5rem 0.75rem 0.75rem; border-radius: 8px; border: 1px solid #ccc; appearance: none; background: url('data:image/svg+xml;utf8,<svg fill='%23000' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>') no-repeat right 1rem center; background-color: white; background-size: 1rem 1rem;">
+          <option value="">{{ 'return_form.select_reason' | t }}</option>
+          <option value="too_small">{{ 'return_form.reason_too_small' | t }}</option>
+          <option value="too_large">{{ 'return_form.reason_too_large' | t }}</option>
+          <option value="changed_mind">{{ 'return_form.reason_changed_mind' | t }}</option>
+          <option value="not_as_described">{{ 'return_form.reason_not_as_described' | t }}</option>
+          <option value="wrong_item">{{ 'return_form.reason_wrong_item' | t }}</option>
+          <option value="defective">{{ 'return_form.reason_defective' | t }}</option>
+          <option value="style">{{ 'return_form.reason_style' | t }}</option>
+          <option value="other">{{ 'return_form.reason_other' | t }}</option>
+        </select>
+
+        <div>
+          <br/>
+          <label class="form-label">{{ 'return_form.shippment_policy_attachment' | t }}</label>
+          <input 
+            type="file" 
+            name="attachment" 
+            id="attachment"
+            required 
+            accept="image/*,.pdf" 
+            style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid #ccc;"/>
+          <div class="invalid-feedback" style="display:none; color: #c00; font-size: 1.2rem; margin-top: 4px;">
+            {{ 'return_form.upload_file' | t }}
+          </div>
+        </div>
+        
+        <div class="invalid-feedback" style="display:none; color: #c00; font-size: 0.85rem; margin-top: 4px;">
+          {{ 'return_form.required_message' | t }}
+        </div>
+  
+        <div style="margin-top: 1.25rem;">
+          <textarea
+            placeholder="{{ 'return_form.additional_note' | t }}"
+            name="note"
+            class="note-textarea"
+            oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px';"
+          ></textarea>
+        </div>
+  
+        <div>
+          <button
+            type="submit"
+            class="button"
+            style="display: block; width: 100%; padding: 1rem 2rem; font-weight: 600; font-size: 1rem; background-color: #1e4c45; color: #fff; border: none; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); outline: none; appearance: none; transition: background-color 0.3s ease, transform 0.2s ease;"
+            onmouseover="this.style.backgroundColor='#163832'; this.style.transform='scale(1.01)'"
+            onmouseout="this.style.backgroundColor='#1e4c45'; this.style.transform='scale(1)'">
+            {{ 'return_form.submit' | t }}
+          </button>
+        </div>
+        <div id="form-response-message" class="form-response-message"></div>
+      </div>
+    </form>
+
+    <!-- Hidden translation spans -->
+    <span data-translate-select-all>{{ 'return_form.select_all' | t }}</span>
+    <span data-translate-select-items>{{ 'return_form.select_items' | t }}</span>
+    <span data-translate-success>{{ 'return_form.success' | t }}</span>
+    <span data-translate-error>{{ 'return_form.error' | t }}</span>
+    <span data-translate-required>{{ 'return_form.required_message' | t }}</span>
+    <span data-translate-loading style="display: none;">{{ 'accessibility.loading' | t }}</span>
+    <span data-translate-success-message style="display: none;">{{ 'return_form.success_message' | t }}</span>
+    <span data-translate-fail-message style="display: none;">{{ 'return_form.fail_message' | t }}</span>
+    <span data-translate-exceed-message style="display: none;">{{ 'return_form.exceed_message' | t }}</span>
+    <span data-translate-out-saudi style="display: none;">{{ 'return_form.out_saudi' | t }}</span>
+    <span data-translate-quantity style="display: none;">{{ 'return_form.quantity' | t }}</span>
+    <span data-translate-price style="display: none;">{{ 'return_form.price' | t }}</span>
+    <span data-translate-currency style="display: none;">{{ 'return_form.currency' | t }}</span>
+    <span data-translate-no-items-available style="display: none;">{{ 'return_form.no_items_available' | t }}</span>
+    <span data-translate-catch-message style="display: none;">{{ 'return_form.catch_message' | t }}</span>
+    <span data-translate-order-price style="display: none;">{{ 'return_form.order_price' | t }}</span>
+    <span data-translate-order-number style="display: none;">{{ 'return_form.order_number' | t }}</span>
+    <span data-translate-return-shipping-message style="display: none;">{{ 'return_form.return_shipping_message' | t }}</span>
+    <span data-translate-return-shipping-message_thanks style="display: none;">{{ 'return_form.return_shipping_message_thanks' | t }}</span>
+    <span data-translate-requested style="display: none;">{{ 'return_form.requested' | t }}</span>
+    <span data-translate-approved style="display: none;">{{ 'return_form.approved' | t }}</span>
+    <span data-translate-declined style="display: none;">{{ 'return_form.declined' | t }}</span>
+    <span data-translate-shippment-policy-attachment style="display: none;">{{ 'return_form.shippment_policy_attachment' | t }}</span>
+    <span data-translate-upload-file style="display: none;">{{ 'return_form.upload_file' | t }}</span>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("return-request-form");
+  const section = document.getElementById("line-items-section");
+  const orderDropdown = document.querySelector('select[name="order_number"]');
+  const submitButton = form.querySelector('button[type="submit"]');
+
+  const loadingOverlay = document.getElementById("loading-overlay");
+  const formContent = document.getElementById("form-content");
+
+  const t = {
+    select_all: document.querySelector("[data-translate-select-all]")?.textContent || "Select all",
+    select_items: document.querySelector("[data-translate-select-items]")?.textContent || "Select items to return",
+    success: document.querySelector("[data-translate-success]")?.textContent || "Return submitted successfully.",
+    error: document.querySelector("[data-translate-error]")?.textContent || "There was a problem submitting your return.",
+    loading: document.querySelector("[data-translate-loading]")?.textContent || "Loading",
+    success_message: document.querySelector("[data-translate-success-message]")?.textContent || "Return request submitted successfully!",
+    fail_message: document.querySelector("[data-translate-fail-message]")?.textContent || "There was a problem sending the request!",
+    quantity: document.querySelector("[data-translate-quantity]")?.textContent || "Quantity :",
+    price: document.querySelector("[data-translate-price]")?.textContent || "Price :",
+    currency: document.querySelector("[data-translate-currency]")?.textContent || "SAR",
+    no_items_available: document.querySelector("[data-translate-no-items-available]")?.textContent || "No items available for return in this order",
+    catch_message: document.querySelector("[data-translate-catch-message]")?.textContent || "An error occurred while sending the request. Please try again.",
+    order_price: document.querySelector("[data-translate-order-price]")?.textContent || "Price",
+    order_number: document.querySelector("[data-translate-order-number]")?.textContent || "Order Number",
+    exceed_message: document.querySelector("[data-translate-exceed-message]")?.textContent || "The allowed period has been exceeded.",
+    out_saudi: document.querySelector("[data-translate-out-saudi]")?.textContent || "Out Saudi",
+    return_shipping_message: document.querySelector("[data-translate-return-shipping-message]")?.textContent || "Please note that return shipping costs.",
+    return_shipping_message_thanks: document.querySelector("[data-translate-return-shipping-message-thanks]")?.textContent || "Thanks",
+    requested: document.querySelector("[data-translate-requested]")?.textContent || "Returned Requested",
+    approved: document.querySelector("[data-translate-approved]")?.textContent || "Returned Approved",
+    declined: document.querySelector("[data-translate-declined]")?.textContent || "Return Request Declined",
+    shippment_policy_attachment: document.querySelector("[data-translate-shippment-policy-attachment]")?.textContent || "Shippment Policy Attachment",
+    upload_file: document.querySelector("[data-translate-upload-file]")?.textContent || "Please upload a file.",
+  };
+
+  formContent.style.display = "none";
+
+  let forceDisable = false;
+
+
+
+  
+  // 1. تحميل المنتجات عند اختيار order
+  if (orderDropdown) {
+    orderDropdown.addEventListener("change", function () {
+
+      const responseMessage = document.getElementById('form-response-message');
+      responseMessage.style.display = 'none';
+      responseMessage.textContent = '';
+      loadingOverlay.style.display = "block";
+      section.innerHTML = '';
+
+      loadingOverlay.style.display = "block";
+      
+      const orderNumber = this.value;
+      if (!orderNumber) {
+        formContent.style.display = "none";
+        return;
+      };
+
+      loadingOverlay.style.display = "block";
+      formContent.style.display = "none";
+
+      const existingMessage = document.querySelector('.no-items-message');
+      if (existingMessage) {
+        existingMessage.style.display = 'none';
+      }
+      
+      section.innerHTML = `<div class="loading-message">${t.loading}</div>`;
+      const itemFeedback = document.getElementById("line-items-required-message");
+      if (itemFeedback) itemFeedback.style.display = "none";
+
+      // get_lines_api_url
+      let apiUrl = "{{ settings.get_lines_api_url }}";
+      
+      fetch(apiUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ order: orderNumber }),
+      })
+      .then(res => {
+        
+        if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
+        return res.json();
+      })
+      .then(data => {
+
+        if (data.exceeded) {
+            forceDisable = true;
+            const responseMessage = document.getElementById('form-response-message');
+            responseMessage.textContent = t.exceed_message;
+            responseMessage.style.backgroundColor = '#fdecea';
+            responseMessage.style.color = '#d93025';
+            responseMessage.style.display = 'block';
+            
+            if (submitButton) {
+              submitButton.disabled = true;
+              submitButton.style.opacity = '0.5';
+              submitButton.style.cursor = 'not-allowed';
+            }
+        }
+
+        if (data.out_saudi) {
+            forceDisable = true;
+            const responseMessage = document.getElementById('form-response-message');
+            // loadingOverlay.style.display = "none";
+            // section.style.display = "none";
+            // formContent.style.display = "none";
+            responseMessage.textContent = t.out_saudi;
+            responseMessage.style.backgroundColor = '#fdecea';
+            responseMessage.style.color = '#d93025';
+            responseMessage.style.display = 'block';
+    
+            if (submitButton) {
+              submitButton.disabled = true;
+              submitButton.style.opacity = '0.5';
+              submitButton.style.cursor = 'not-allowed';
+            }
+        }
+
+        if (!data.line_items || data.line_items.length === 0) {
+          // No items available for return
+          loadingOverlay.style.display = "none";
+          section.innerHTML = `<div class="empty-message-box">
+            {{ 'return_form.no_items_available' | t }}
+          </div>`;
+          
+          // Keep the form content hidden
+          formContent.style.display = "none";
+
+          const existingMessage = document.querySelector('.no-items-message');
+          if (existingMessage) {
+            existingMessage.remove();
+          }
+          const messageDiv = document.createElement("div");
+          messageDiv.classList.add('no-items-message');
+          messageDiv.textContent = t.no_items_available;
+          const orderDropdownDiv = orderDropdown.closest('.form-row');
+          orderDropdownDiv.parentNode.insertBefore(messageDiv, loadingOverlay);
+          return;
+        }
+        const existingMessage = document.querySelector('.no-items-message');
+        if (existingMessage) {
+          existingMessage.remove();
+        }
+
+        const availableItems = data.line_items.filter(item => !['requested', 'approved', 'declined'].includes(item.state));
+        
+        section.innerHTML = "";
+        if (availableItems.length > 0) {
+          const layout = document.createElement("div");
+          layout.className = "return-header";
+          layout.innerHTML = `
+            <label><input type="checkbox" id="select-all"> ${t.select_all}</label>
+            <span>${t.select_items}</span>
+          `;
+          section.appendChild(layout);
+        }
+
+        data.line_items.forEach(item => {
+          const card = document.createElement("div");
+          card.className = 'return-item-card';
+          card.dataset.itemId = item.id;
+          card.dataset.quantity = item.quantity;
+
+          let stateText = '';
+          if (item.state === 'requested') {
+            stateText = `<div class="return-state requested">${t.requested}</div>`;
+          } else if (item.state === 'approved') {
+            stateText = `<div class="return-state approved">${t.approved}</div>`;
+          } else if (item.state === 'declined') {
+            stateText = `<div class="return-state declined">${t.declined}</div>`;
+          }
+
+          card.innerHTML = `
+            <input type="hidden" class="item-quantity" value="${item.quantity}">
+            <div class="item-thumbnail"><img src="${item.image}" alt=""></div>
+            <div class="item-details">
+                <div class="title-ar">${item.title_ar}</div>
+                <div class="title-en">${item.title_en}</div>
+                <div style="font-size: 1.5rem; color: #999; margin-top: 0.25rem;">${t.quantity} ${item.quantity}</div>
+                <div class='price'>${t.price} ${item.quantity * item.price} ${t.currency}</div>
+            </div>
+
+            <div class="item-action">
+              <input 
+                type="checkbox" 
+                name="line_items" 
+                value="${item.id}" 
+                ${(item.state === 'requested' || item.state === 'approved' || item.state === 'declined') ? 'disabled checked' : ''}
+              >
+              ${
+                item.state === 'requested' ? `<span class="returned-label-requested">${t.requested}</span>` :
+                item.state === 'approved' ? `<span class="returned-label-approved">${t.approved}</span>` :
+                item.state === 'declined' ? `<span class="returned-label-declined">${t.declined}</span>` :
+                ''
+              }
+            </div>
+          `;
+          section.appendChild(card);
+        });
+
+        const selectAll = document.getElementById("select-all");
+        if (selectAll) {
+          selectAll.addEventListener("change", function () {
+            const checked = this.checked;
+            section.querySelectorAll('input[name="line_items"]').forEach(cb => cb.checked = checked);
+          });
+        }
+        
+        // Check if all line item checkboxes are disabled
+        const allItemsDisabled = Array.from(section.querySelectorAll('input[name="line_items"]')).every(input => input.disabled);
+
+        if (allItemsDisabled || forceDisable) {
+            if (submitButton) {
+                submitButton.disabled = true;
+                submitButton.style.opacity = '0.5';
+                submitButton.style.cursor = 'not-allowed';
+            }
+        } else {
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.style.opacity = '1';
+                submitButton.style.cursor = 'pointer';
+            }
+        }
+        
+        loadingOverlay.style.display = "none";
+        formContent.style.display = "block";
+      })
+      .catch(error => {
+        console.error("Error fetching data:", error);
+
+        const responseMessage = document.getElementById('form-response-message');
+
+        // hide everything
+        loadingOverlay.style.display = "none"; 
+        section.style.display = "none";
+        formContent.style.display = "none";
+      
+        // now only show the message
+        responseMessage.textContent = t.error; 
+        responseMessage.style.backgroundColor = 'transparent';
+        responseMessage.style.color = '#d93025';
+        responseMessage.style.display = 'block';
+      
+        // move the message to appear alone
+        const formWrapper = document.querySelector('.return-form-card');
+        formWrapper.appendChild(responseMessage);
+      });
+    });
+  }
+
+
+
+
+  
+  // 2. إرسال نموذج الإرجاع
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const lineItemCheckboxes = document.querySelectorAll('input[name="line_items"]');
+    const hasCheckedItem = Array.from(lineItemCheckboxes).some(cb => cb.checked);
+    if (!hasCheckedItem) {
+      const itemFeedback = document.getElementById("line-items-required-message");
+      if (itemFeedback) itemFeedback.style.display = "block";
+      return;
+    } else {
+      const itemFeedback = document.getElementById("line-items-required-message");
+      if (itemFeedback) itemFeedback.style.display = "none";
+    }
+
+    const inputs = form.querySelectorAll("input[required], select[required], textarea[required], input[type='checkbox'][required]");
+    let formValid = true;
+    inputs.forEach(input => {
+      const feedback = input.parentElement.querySelector(".invalid-feedback") || input.closest("label")?.nextElementSibling;
+      if (!input.checkValidity()) {
+        if (feedback) feedback.style.display = "block";
+        formValid = false;
+      } else {
+        if (feedback) feedback.style.display = "none";
+      }
+    });
+
+    const attachmentInput = document.getElementById('attachment');
+    const attachmentFeedback = attachmentInput?.parentElement.querySelector(".invalid-feedback");
+    
+    if (!attachmentInput?.files.length) {
+      if (attachmentFeedback) attachmentFeedback.style.display = "block";
+      formValid = false;
+    } else {
+      if (attachmentFeedback) attachmentFeedback.style.display = "none";
+    }
+
+    if (!formValid) return;
+
+    const formData = new FormData(form);
+    const reasonSelect = form.querySelector('select[name="reason"]');
+    const reasonLabel = reasonSelect.options[reasonSelect.selectedIndex].textContent.trim();
+
+    const line_items = Array.from(document.querySelectorAll('input[name="line_items"]:checked')).map(cb => {
+        const itemCard = cb.closest('.return-item-card');
+        return {
+          id: cb.value,
+          title_ar: itemCard.querySelector('.title-ar')?.innerText || '',
+          title_en: itemCard.querySelector('.title-en')?.innerText || '',
+          price: (itemCard.querySelector('.price')?.innerText.match(/\d+(\.\d+)?/) || [])[0] || '',
+          quantity: itemCard.querySelector('.item-quantity')?.value || '1'
+        };
+      })
+
+    submitButton.disabled = true;
+
+    let apiUrl = "{{ settings.return_request_api_url }}";
+
+    const formDataToSend = new FormData();
+    formDataToSend.append('order_number', formData.get('order_number'));
+    formDataToSend.append('reason', reasonLabel);
+    formDataToSend.append('note', formData.get('note'));
+    formDataToSend.append('shipping_agreement', formData.get('shipping_agreement') === 'on' ? 'true' : 'false');
+    formDataToSend.append('attachment', attachmentInput.files[0]);
+    formDataToSend.append('line_items', JSON.stringify(line_items));
+
+    fetch(apiUrl, {
+      method: "POST",
+      body: formDataToSend
+    })
+    .then(res => {
+      if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
+      
+      return res.json();
+    })
+    .then(response => {
+      const responseMessage = document.getElementById('form-response-message');
+      if (response && response.success) {
+        form.reset();
+        loadingOverlay.style.display = "none";
+        section.style.display = "none";
+        formContent.style.display = "none";
+        
+        responseMessage.textContent = t.success_message;
+        responseMessage.style.backgroundColor = '#e7f7ec'; // greenish background
+        responseMessage.style.color = '#20744a'; // dark green text
+        responseMessage.style.display = 'block';
+        const formWrapper = document.querySelector('.return-form-card');
+        formWrapper.appendChild(responseMessage);
+        } else {
+        responseMessage.textContent = response.message || t.fail_message;
+        responseMessage.style.backgroundColor = '#fdecea'; // reddish background
+        responseMessage.style.color = '#d93025'; // red text
+        responseMessage.style.display = 'block';
+        submitButton.innerText = t.fail_message;
+      }
+    })
+    .catch(error => {
+      const responseMessage = document.getElementById('form-response-message');
+      responseMessage.textContent = t.catch_message;
+      responseMessage.style.backgroundColor = '#fdecea'; // reddish background catch_message
+      responseMessage.style.color = '#d93025'; // red text
+      responseMessage.style.display = 'block';
+    })
+    .finally(() => {
+      submitButton.disabled = false;
+    });
+  });
+});
+</script>

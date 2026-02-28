@@ -1,0 +1,183 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "image_with_text_rcLFKb": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_zBmdzf": {
+          "type": "heading",
+          "settings": {
+            "heading": "<em><strong>Premium jewelry</strong></em>",
+            "heading_size": "h1"
+          }
+        },
+        "text_JKdnMf": {
+          "type": "text",
+          "settings": {
+            "text": "<p>FAYENDRA’s creations have grabbed the attention of customers all over the world because of their bold and sophisticated style, where meticulous attention to detail and innovative quality combine to create timeless elegance.</p><p>Excellence for FAYENDRA means the perfect balance between quality products and impeccable service all over the world.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_zBmdzf",
+        "text_JKdnMf"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/0000m_p.jpg",
+        "height": "adapt",
+        "desktop_image_width": "small",
+        "layout": "image_first",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "image_with_text_yrf73A": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_RwAmgq": {
+          "type": "heading",
+          "settings": {
+            "heading": "<em><strong>Quality</strong></em>",
+            "heading_size": "h1"
+          }
+        },
+        "text_RPQQth": {
+          "type": "text",
+          "settings": {
+            "text": "<p>At FAYENDRA we use high-quality materials, starting with pure 925 silver (for silver jewelry) or the purest stainless steel 316 (for watches and pens), all the way to offer a full range of luxurious packaging materials engraved with the brand's logo to provide the customer with a unique royal experience, as FAYENDRA offers all of its products to its customers in boxes with a luxurious, distinctive and unique appearance.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_RwAmgq",
+        "text_RPQQth"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/00089.jpg",
+        "height": "adapt",
+        "desktop_image_width": "small",
+        "layout": "text_first",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "image_with_text_3HtqrJ": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_ine6Ki": {
+          "type": "heading",
+          "settings": {
+            "heading": "<em><strong>Materials and Techniques</strong></em>",
+            "heading_size": "h1"
+          }
+        },
+        "text_hPVk7H": {
+          "type": "text",
+          "settings": {
+            "text": "<p>All FAYENDRA products are manufactured using premium quality fancy materials, and FAYENDRA is the only brand that uses a special technique to treat silver to prevent rusting. Moreover, FAYENDRA uses precious and semi-precious stones in its silver jewelry and guarantees that no synthetic poly or crystal is used.</p><p>FAYENDRA also guarantees that all watches are Swiss-made, created, and manufactured with the finest technologies, and with the finest and purest stainless steel 316.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_ine6Ki",
+        "text_hPVk7H"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/materials.jpg",
+        "height": "adapt",
+        "desktop_image_width": "small",
+        "layout": "image_first",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "image_with_text_YbJcAN": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_fY8Cw6": {
+          "type": "heading",
+          "settings": {
+            "heading": "<em><strong>Designs</strong></em>",
+            "heading_size": "h1"
+          }
+        },
+        "text_TPX7eG": {
+          "type": "text",
+          "settings": {
+            "text": "<p>FAYENDRA designers unleashed their imagination, inspired by nature, history, art, and charming Eastern tales, to create a unique design identity, especially for FAYENDRA.<br/><br/></p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_fY8Cw6",
+        "text_TPX7eG"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/design.jpg",
+        "height": "adapt",
+        "desktop_image_width": "small",
+        "layout": "text_first",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_with_text_rcLFKb",
+    "image_with_text_yrf73A",
+    "image_with_text_3HtqrJ",
+    "image_with_text_YbJcAN"
+  ]
+}

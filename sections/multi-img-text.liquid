@@ -1,0 +1,243 @@
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+
+<section class="section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }}">
+  <div class="slider-container">
+    {% for block in section.blocks %}
+      <div class="slide section-{{ block.id }}-padding gradient color-{{ block.settings.section_color_scheme }} {% if block.settings.animation_reval == true %}animation-reval {% else %}animation-true{% endif %}">
+        <style>
+          .section-{{ block.id }}-padding {
+            padding-top: {{ block.settings.padding_top | times: 0.75 | round: 0 }}px;
+            padding-bottom: {{ block.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+          }
+
+          @media screen and (min-width: 750px) {
+            .section-{{ block.id }}-padding {
+              padding-top: {{ block.settings.padding_top }}px;
+              padding-bottom: {{ block.settings.padding_bottom }}px;
+            }
+          }
+        </style>
+        <div class="page-width">
+          <div class="image-with-text__grid grid">
+            <div class="grid__item image-wrapper">
+              <div class="img-block first-img">
+                <div class="media">
+                  <img
+                    src="{{ block.settings.image1 | img_url: 'large' }}"
+                    alt="{{ block.settings.image1.alt }}"
+                  >
+                </div>
+              </div>
+              <div class="img-block second-img">
+                <div class="media">
+                  <img
+                    src="{{ block.settings.image2 | img_url: 'large' }}"
+                    alt="{{ block.settings.image2.alt }}"
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="grid__item text-wrapper">
+              <h2>{{ block.settings.heading }}</h2>
+              {% if block.settings.text != blank %}
+                <div class="rte">
+                  <p>{{ block.settings.text }}</p>
+                </div>
+              {% endif %}
+              {%- if block.settings.button_label != blank -%}
+                <a
+                  {% if block.settings.button_link == blank %}
+                    role="link" aria-disabled="true"
+                  {% else %}
+                    href="{{ block.settings.button_link }}"
+                  {% endif %}
+                  class="button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
+                >
+                  {{ block.settings.button_label | escape }}
+                </a>
+              {%- endif -%}
+              {% if block.settings.bottomtext != blank %}
+                <div class="rte highlight-text">
+                  <p>{{ block.settings.bottomtext }}</p>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+<script>
+       $('.section-{{ section.id }}-padding .slider-container').slick({
+         arrows: false,
+         dots: true,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+         autoplay: true,
+         fade: true,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              infinite: true
+            }
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          }
+          // You can unslick at a given breakpoint now by adding:
+          // settings: "unslick"
+          // instead of a settings object
+        ]
+      });
+  $(document).ready(function() {
+      function getBackgroundColor(elem) {
+        return window.getComputedStyle(elem, null).getPropertyValue('background-color');
+      }
+
+      function isColorDark(color) {
+        var rgb = color.replace(/[^\d,]/g, '').split(',');
+        var luminance = (0.299 * rgb[0]) + (0.587 * rgb[1]) + (0.114 * rgb[2]);
+        return luminance < 128;
+      }
+
+      function updateDotsColor(slider, currentSlide) {
+        var currentSlideElement = $(slider).find('.slick-slide[data-slick-index="' + currentSlide + '"]');
+        var backgroundColor = getBackgroundColor(currentSlideElement[0]);
+
+        if (isColorDark(backgroundColor)) {
+          $('.slick-dots li button').css('background-color', '#fff');
+        } else {
+          $('.slick-dots li button').css('background-color', '#000');
+        }
+      }
+
+      $('.section-{{ section.id }}-padding .slider-container').on('afterChange', function(event, slick, currentSlide) {
+        updateDotsColor('.section-{{ section.id }}-padding .slider-container', currentSlide);
+      });
+
+      // Initial update for the first slide
+      updateDotsColor('.section-{{ section.id }}-padding .slider-container', 0);
+    });
+</script>
+
+{% schema %}
+{
+  "name": "Image & Text Slider",
+  "settings": [
+
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image1",
+          "label": "First Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image2",
+          "label": "Second Image"
+        },
+        {
+          "type": "checkbox",
+          "id": "animation_reval",
+          "label": "Image Animation Type"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Your Heading Here"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Your text here."
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "default": "button label",
+          "label": "button label"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_style_secondary",
+          "default": false,
+          "label": "t:sections.image-with-text.blocks.button.settings.outline_button.label"
+        },
+        {
+          "type": "textarea",
+          "id": "bottomtext",
+          "label": "Bottom Text",
+          "default": "Your text here."
+        },
+        {
+      "type": "color_scheme",
+      "id": "section_color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image & Text Slider",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

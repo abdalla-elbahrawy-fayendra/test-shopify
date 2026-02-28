@@ -1,0 +1,462 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "slideshow_fLfrEM": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_xqWamX": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/1920x-02_1440x604_ae46c5bf-10b7-44ba-a944-c6e02083a3a2.png",
+            "heading": "",
+            "heading_size": "h2",
+            "subheading": "",
+            "button_label": "Shop Now",
+            "link": "shopify://collections/sales",
+            "button_style_secondary": true,
+            "box_align": "bottom-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-3",
+            "text_alignment_mobile": "center"
+          }
+        },
+        "slide_6ppjgB": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/with_this.jpg",
+            "heading": "",
+            "heading_size": "h2",
+            "subheading": "",
+            "button_label": "Shop Now",
+            "link": "shopify://collections",
+            "button_style_secondary": true,
+            "box_align": "bottom-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 10,
+            "color_scheme": "scheme-3",
+            "text_alignment_mobile": "center"
+          }
+        },
+        "slide_gDzm34": {
+          "type": "slide",
+          "disabled": true,
+          "settings": {
+            "heading": "",
+            "heading_size": "h2",
+            "subheading": "",
+            "button_label": "Shop Sales now",
+            "link": "shopify://collections/sales",
+            "button_style_secondary": true,
+            "box_align": "bottom-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-3",
+            "text_alignment_mobile": "center"
+          }
+        },
+        "slide_NHVr9F": {
+          "type": "slide",
+          "disabled": true,
+          "settings": {
+            "heading": "",
+            "heading_size": "h2",
+            "subheading": "",
+            "button_label": "",
+            "link": "#",
+            "button_style_secondary": false,
+            "box_align": "bottom-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 10,
+            "color_scheme": "scheme-3",
+            "text_alignment_mobile": "center"
+          }
+        }
+      },
+      "block_order": [
+        "slide_xqWamX",
+        "slide_6ppjgB",
+        "slide_gDzm34",
+        "slide_NHVr9F"
+      ],
+      "settings": {
+        "className": "main-banner",
+        "layout": "full_bleed",
+        "slide_height": "small",
+        "slider_visual": "dots",
+        "auto_rotate": true,
+        "change_slides_speed": 5,
+        "image_behavior": "ambient",
+        "show_text_below": false,
+        "accessibility_info": "Slideshow about our brand"
+      }
+    },
+    "image_banner": {
+      "type": "image-banner",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Jewels of the Future",
+            "heading_size": "h1"
+          }
+        },
+        "button": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Scroll to discover",
+            "button_link_1": "shopify://collections/all",
+            "button_style_secondary_1": true,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "button"
+      ],
+      "disabled": true,
+      "settings": {
+        "image_overlay_opacity": 40,
+        "image_height": "large",
+        "desktop_content_position": "bottom-center",
+        "show_text_box": false,
+        "desktop_content_alignment": "center",
+        "color_scheme": "scheme-3",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": false,
+        "show_text_below": false
+      }
+    },
+    "rich_text_9A8Qna": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_Hwchrj": {
+          "type": "heading",
+          "settings": {
+            "heading": "Immerse yourself in the legacy of Fayendra and let our enduring beauty <strong>inspire you.</strong>",
+            "heading_size": "h2"
+          }
+        }
+      },
+      "block_order": [
+        "heading_Hwchrj"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-5",
+        "full_width": true,
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "multicolumn_rrUwyd": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_PMYa6n": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/women.jpg",
+            "title": "",
+            "text": "",
+            "link_label": "Fashion Pendants",
+            "link": "shopify://collections/womens-fashion-pendants",
+            "custom_button": ""
+          }
+        },
+        "column_hKfzYF": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/men.jpg",
+            "title": "",
+            "text": "",
+            "link_label": "Watches",
+            "link": "shopify://collections/watches",
+            "custom_button": ""
+          }
+        },
+        "column_tYbFAt": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/gifts.jpg",
+            "title": "",
+            "text": "",
+            "link_label": "Gifts",
+            "link": "shopify://collections/gifts",
+            "custom_button": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_PMYa6n",
+        "column_hKfzYF",
+        "column_tYbFAt"
+      ],
+      "settings": {
+        "className": "home-category",
+        "title": "<strong>Step into the new season!</strong>",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "portrait",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "none",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "",
+        "animation_icon_allow": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "animationName": "middleFlipView",
+        "padding_top": 36,
+        "padding_bottom": 100
+      }
+    },
+    "multi_img_text_gDBatG": {
+      "type": "multi-img-text",
+      "blocks": {
+        "slide_pUckXM": {
+          "type": "slide",
+          "settings": {
+            "image1": "shopify://shop_images/1.2.webp",
+            "image2": "shopify://shop_images/2.2.jpg",
+            "animation_reval": false,
+            "heading": "Timeless Elegance",
+            "text": "Fayendra Jewellery for men, is a true expression of elegance, precision, and artistry. Whether a treasured gift or a personal indulgence, each piece celebrates life’s moment with style and refined distinction.",
+            "button_label": "Discover Now",
+            "button_link": "shopify://collections/mens-jewellery",
+            "button_style_secondary": true,
+            "bottomtext": "explore the collection and find your statement piece",
+            "section_color_scheme": "scheme-4",
+            "padding_top": 56,
+            "padding_bottom": 56
+          }
+        },
+        "slide_BfgUPP": {
+          "type": "slide",
+          "settings": {
+            "image1": "shopify://shop_images/2.jpg",
+            "image2": "shopify://shop_images/1.webp",
+            "animation_reval": false,
+            "heading": "Precious Sophistication",
+            "text": "Discover Jewellery for every occasion at Fayendra. Whether you're looking for earrings, bracelets, necklaces or rings, you'll find a huge range of fine Jewellery to choose from.",
+            "button_label": "Discover Now",
+            "button_link": "shopify://collections/womens-jewellery",
+            "button_style_secondary": true,
+            "bottomtext": "Allow Fayendra to bring nature's charm into your life.",
+            "section_color_scheme": "scheme-3",
+            "padding_top": 56,
+            "padding_bottom": 56
+          }
+        },
+        "slide_CWNdTV": {
+          "type": "slide",
+          "settings": {
+            "image1": "shopify://shop_images/1.3.webp",
+            "image2": "shopify://shop_images/2.3.webp",
+            "animation_reval": false,
+            "heading": "Find a Showroom",
+            "text": "With almost 60 showrooms across Saudi Arabia and the UAE, Fayendra is never far away. Visit us to explore our exquisite collections and experience personalized service at a location near you.",
+            "button_label": "Discover Now",
+            "button_link": "shopify://pages/store-locator",
+            "button_style_secondary": true,
+            "bottomtext": "Elevate your spirit with our classic designs.",
+            "section_color_scheme": "scheme-4",
+            "padding_top": 56,
+            "padding_bottom": 56
+          }
+        }
+      },
+      "block_order": [
+        "slide_pUckXM",
+        "slide_BfgUPP",
+        "slide_CWNdTV"
+      ],
+      "settings": {}
+    },
+    "featured_collection_LLXXBD": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.name",
+      "settings": {
+        "title": "Explore Best Sellers",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "explore-best-sellers",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "full_width": false,
+        "show_view_all": false,
+        "view_all_style": "link",
+        "enable_desktop_slider": false,
+        "color_scheme": "",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_product_description": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "collection_list_hHbqP4": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_6nMDi9": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "jewellery"
+          }
+        },
+        "featured_collection_RB6KxB": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "fragrances"
+          }
+        },
+        "featured_collection_zkNB8V": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "watches"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_6nMDi9",
+        "featured_collection_RB6KxB",
+        "featured_collection_zkNB8V"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "Explore more!",
+        "heading_size": "h2",
+        "image_ratio": "portrait",
+        "columns_desktop": 3,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 56
+      }
+    },
+    "featured_collection_cnP6A7": {
+      "type": "featured-collection",
+      "disabled": true,
+      "settings": {
+        "title": "<strong>Explore more</strong>",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "jewellery",
+        "products_to_show": 3,
+        "columns_desktop": 3,
+        "full_width": false,
+        "show_view_all": false,
+        "view_all_style": "solid",
+        "enable_desktop_slider": false,
+        "color_scheme": "",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_product_description": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "icons_with_text_WkTHHR": {
+      "type": "icons-with-text",
+      "blocks": {
+        "column_tKyR9c": {
+          "type": "column",
+          "settings": {
+            "title": "Fayendra at your service",
+            "text": "<p>Our Client Care Experts offer a seamless and personalized experience.</p>",
+            "link_label": "Contact Us",
+            "link": "shopify://pages/contact-us-main"
+          }
+        },
+        "column_hnMpwX": {
+          "type": "column",
+          "disabled": true,
+          "settings": {
+            "title": "book an appointment",
+            "text": "<p>Schedule an in-store or virtual appointment for personalized shopping and expert advice.</p>",
+            "link_label": "Book Now",
+            "link": "shopify://collections"
+          }
+        },
+        "column_en9fdJ": {
+          "type": "column",
+          "disabled": true,
+          "settings": {
+            "title": "Try Before You Buy",
+            "text": "<p>Try on jewelry virtually to see how it looks before purchasing.</p>",
+            "link_label": "Try Now",
+            "link": "shopify://collections/jewellery"
+          }
+        }
+      },
+      "block_order": [
+        "column_tKyR9c",
+        "column_hnMpwX",
+        "column_en9fdJ"
+      ],
+      "settings": {
+        "className": "fayendra-information",
+        "title": "The Fayendra experience",
+        "heading_size": "h2",
+        "image_width": "third",
+        "image_ratio": "square",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "none",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "scheme-3",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 40,
+        "padding_bottom": 32
+      }
+    }
+  },
+  "order": [
+    "slideshow_fLfrEM",
+    "image_banner",
+    "rich_text_9A8Qna",
+    "multicolumn_rrUwyd",
+    "multi_img_text_gDBatG",
+    "featured_collection_LLXXBD",
+    "collection_list_hHbqP4",
+    "featured_collection_cnP6A7",
+    "icons_with_text_WkTHHR"
+  ]
+}
